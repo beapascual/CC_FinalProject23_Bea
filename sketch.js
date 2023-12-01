@@ -7,6 +7,8 @@ function setup() {
 function draw() {
   // put drawing code here
   background(0);
+
+  translate (-character.pos.x+50,0)
   character.update();
   character.display();
 
