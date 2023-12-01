@@ -2,7 +2,7 @@ class Character{
 
     constructor(x,y){
         this.pos = createVector(50,height-25);
-        this.vel = createVector(1,0);
+        this.vel = createVector(2,0);
         this.acc = createVector(0,0);
 
     }
