@@ -27,7 +27,8 @@ function draw() {
   character.checkEdges();
   character.display();
   
-for(let x = 0; x < width; x = x + 100 )
+for(let x = 0; x < width; x = x + 300 ){
   fill (0,255,0);
   rect(x + 400,height-50,50,50);
+}
 }
