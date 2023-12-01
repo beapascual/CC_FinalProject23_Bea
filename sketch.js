@@ -10,5 +10,6 @@ function draw() {
   character.update();
   character.display();
 
-
+  fill (0,255,0);
+  rect(400,height-50,50,50);
 }
