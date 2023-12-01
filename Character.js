@@ -25,7 +25,7 @@ class Character{
     checkEdges(){
         if(this.pos.y > height-25){
             this.vel.y *= 0;
-            this.pos.y = height-25  ;
+            this.pos.y = height-25;
         }
     }
 }

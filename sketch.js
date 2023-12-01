@@ -1,3 +1,5 @@
+let x;
+
 function setup() {
   createCanvas(800, 800);
   character = new Character;
@@ -25,7 +27,7 @@ function draw() {
   character.checkEdges();
   character.display();
   
-
+for(let x = 0; x < width; x = x + 100 )
   fill (0,255,0);
-  rect(400,height-50,50,50);
+  rect(x + 400,height-50,50,50);
 }
