@@ -21,4 +21,11 @@ class Character{
         fill(255)
         ellipse(this.pos.x,this.pos.y,50)
     }
+
+    checkEdges(){
+        if(this.pos.y > height-25){
+            this.vel.y *= 0;
+            this.pos.y = height-25  ;
+        }
+    }
 }
