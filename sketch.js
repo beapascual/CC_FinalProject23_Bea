@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=Ouza_4SsbLc
+
 let x;
 
 function setup() {
@@ -29,6 +31,7 @@ function draw() {
   
 for(let x = 0; x < width*5; x = x + 300 ){
   fill (0,255,0);
-  rect(x + 400,height-50,50,50);
+  triangle(x + 400,height,x+450,height,x+425,height-50
+    );
 }
 }
