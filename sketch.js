@@ -1,11 +1,15 @@
 //https://www.youtube.com/watch?v=Ouza_4SsbLc
 
 let x;
+// let sprite;
 
 function setup() {
   createCanvas(800, 800);
   character = new Character;
 
+  // sprite = new Sprite();
+	// sprite.width = 50;
+	// sprite.height = 50;
 }
 
 function keyPressed(){
