@@ -3,7 +3,9 @@ let ball, floor;
 function setup() {
 	new Canvas(238, 200);
 	world.gravity.y = 10;
+}
 
+function draw(){
 	ball = new Sprite();
 	ball.diameter = 50;
 	ball.y = 30;
@@ -12,5 +14,5 @@ function setup() {
 	floor.y = 190;
 	floor.w = 238;
 	floor.h = 5;
-	//floor.collider = 'static';
+	floor.collider = 'static';
 }
