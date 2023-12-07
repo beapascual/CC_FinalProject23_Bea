@@ -1,18 +1,37 @@
-let ball, floor;
+//https://www.youtube.com/watch?v=Ouza_4SsbLc
+
+let x;
 
 function setup() {
-	new Canvas(238, 200);
-	world.gravity.y = 10;
+  createCanvas(800, 800);
+  character = new Character;
+
 }
 
-function draw(){
-	ball = new Sprite();
-	ball.diameter = 50;
-	ball.y = 30;
+function keyPressed(){
+  if (key === ' '){
+    let jump = createVector(0, -4.5 );
+    character.applyForce(jump);
+  }
+}
 
-	floor = new Sprite();
-	floor.y = 190;
-	floor.w = 238;
-	floor.h = 5;
-	floor.collider = 'static';
+function draw() {
+  // put drawing code here
+  background(0);
+
+  let gravity = createVector(0,0.1);
+  character.applyForce (gravity);
+
+
+
+  translate (-character.pos.x+50,0)
+  character.update();
+  character.checkEdges();
+  character.display();
+  
+for(let x = 0; x < width*5; x = x + 300 ){
+  fill (0,255,0);
+  triangle(x + 400,height,x+450,height,x+425,height-50
+    );
+}
 }
