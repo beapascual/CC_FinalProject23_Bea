@@ -31,7 +31,6 @@ function draw() {
   
 for(let x = 0; x < width*5; x = x + 300 ){
   fill (0,255,0);
-  triangle(x + 400,height,x+450,height,x+425,height-50
-    );
+  triangle(x + 400,height,x+450,height,x+425,height-50);
 }
 }
