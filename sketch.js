@@ -32,8 +32,13 @@ function draw() {
 for(let x = 0; x < width*5; x = x + 300){
   fill (0,255,0);
   triangle(x + 400,400,x+450,400,x+425,400-50);
-  fill (127)
 }
+
+for(let x = 0; x < width*5; x = x + 100){
+  fill (0,255,0);
+  ellipse(x + 500,400-15,15);
+}
+fill (127)
 rect (0,400,width*6,height)
 rect (0,0,width*6,200)
 
