@@ -9,10 +9,13 @@ function setup() {
   character = new Character();
   option = 0
 
-  // button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
-  // button.position (330,130); // position where button is
-  // button.style ('font-size', '30px'); // size of letters in button
-  // button.mousePressed(level1);
+  fill (100,0,100); 
+  rect(0,0,width,height);
+
+  button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
+  button.position (330,130); // position where button is
+  button.style ('font-size', '30px'); // size of letters in button
+  button.mousePressed();
 
 
  
@@ -24,25 +27,23 @@ function keyPressed(){
     let jump = createVector(0, -5 );
     character.applyForce(jump);
   }
-  if (key === 'l'){
-    option ++
-  }
+  // if (key === 'l'){
+  //   option ++
+  // }
 }
 
-// function draw () {
-//     background (0);
-// }
+
  
 
 
 
 function draw(){
 
-if (option === 0){
-  background (100,0,100); 
-}
+// if (option === 0){
+//   background (100,0,100); 
+// }
 
-if (option === 1){
+// if (option === 1){
 
   background(0);
 
@@ -70,5 +71,5 @@ rect (0,400,width*6,height)
 rect (0,0,width*6,200)
 
 }
-}
+//}
  
