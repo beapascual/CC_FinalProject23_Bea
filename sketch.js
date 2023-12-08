@@ -15,7 +15,7 @@ function setup() {
   // button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
   // button.position (330,130); // position where button is
   // button.style ('font-size', '30px'); // size of letters in button
-  // button.mousePressed();
+  // button.mousePressed(option = 2);
 
 
   mic = new p5.AudioIn();
@@ -86,16 +86,16 @@ rect (0,0,width*6,200)
 
 }
 
-if (option === 2){
-  noStroke();
-  fill(0, 10);
-  rect(0, 0, width, height);
-  // The analyze() method returns values between 0 and 1,&nbsp;
-  // so map() is used to convert the values to larger numbers
-  scale_ = map(amp.getLevel(), 0, 1.0, 10, width);
-  // Draw the circle based on the volume
-  fill(255);
-  ellipse(width/2, height/2, scale_, scale_);
-}
+// if (option === 2){
+//   noStroke();
+//   fill(0, 10);
+//   rect(0, 0, width, height);
+//   // The analyze() method returns values between 0 and 1,&nbsp;
+//   // so map() is used to convert the values to larger numbers
+//   scale_ = map(amp.getLevel(), 0, 1.0, 10, width);
+//   // Draw the circle based on the volume
+//   fill(255);
+//   ellipse(width/2, height/2, scale_, scale_);
+// }
 }
  
