@@ -16,17 +16,17 @@ function setup() {
 
 	player = new Sprite(0,0,i);
 
-	player.overlaps(dots, collect, grow);
+	player.overlaps(dots, collect);
 }
 function collect(player, dot) {
 	dot.remove();
 }
 
-function grow (player, dot){
-	player.diameter += 10
-}
 
 function draw() {
 	clear();
 	player.moveTowards(mouse);
+	if (player.overlaps(dots)){
+		player.scale *= 2;
+	}
 }
