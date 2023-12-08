@@ -26,7 +26,9 @@ function setup() {
 }
 
 function draw() {
+	translate (-ball.x + 50, 0)
 	clear();
+
 }
 
 function keyPressed(){

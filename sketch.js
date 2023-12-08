@@ -1,79 +1,44 @@
-//https://www.youtube.com/watch?v=Ouza_4SsbLc
-
-let x;
-let button;
-let option;
+let ball, floor;
 
 function setup() {
-  createCanvas(800, 600);
-  character = new Character();
-  option = 0
+	new Canvas(400, 400);
+	world.gravity.y = 10;
 
-  // button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
-  // button.position (330,130); // position where button is
-  // button.style ('font-size', '30px'); // size of letters in button
-  // button.mousePressed(option = 2);
+	ball = new Sprite();
+	ball.diameter = 50;
+	ball.x = 0
+	ball.y = 275;
+	ball.vel.x = 2
 
+	floor = new Sprite();
+	floor.x = 0
+	floor.y = 300;
+	floor.w = width*5;
+	floor.h = 5;
+	floor.collider = 'static';
 
-
+	floor2 = new Sprite();
+	floor2.x = 100
+	floor2.y = 250;
+	floor2.w = 50;
+	floor2.h = 5;
+	floor2.collider = 'static';
 }
 
-// function touchStarted() {
-//   getAudioContext().resume();
-// }
+function draw() {
+	translate (-ball.x + 50, 0)
+	clear();
+
+  if(ball.x >= width*5){
+    ball.vel.x = 0
+  }
+
+}
 
 function keyPressed(){
-  if (key === ' '){
-    let jump = createVector(0, -5 );
-    character.applyForce(jump);
+
+
+if (key === ' '){
+    ball.vel.y = -5
   }
-  // if (key === 'l'){
-  //   option ++
-  // }
 }
-
-function mousePressed(){
-  option++
-}
-
-
- 
-
-
-
-function draw(){
-
-if (option === 0){
-  background (100,0,100); 
-}
-
-if (option === 1){
-
-  background(0);
-
-  let gravity = createVector(0,0.1);
-  character.applyForce (gravity);
-
-
-
-  translate (-character.pos.x+50,0)
-  character.update();
-  character.checkEdges();
-  character.display();
-
-for(let x = 0; x < width*5; x = x + 300){
-  fill (0,255,0);
-  triangle(x + 400,400,x+450,400,x+425,400-50);
-}
-
-for(let x = 0; x < width*5; x = x + 100){
-  fill (0,255,0);
-  ellipse(x + 500,400-15,15);
-}
-fill (127)
-rect (0,400,width*6,height)
-rect (0,0,width*6,200)
-
-}
-}
- 
