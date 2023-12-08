@@ -14,8 +14,6 @@ function setup() {
   button.style ('font-size', '30px'); // size of letters in button
   button.mousePressed(level1);
 
-  loop()
-  background(0);
 
   let gravity = createVector(0,0.1);
   character.applyForce (gravity);
@@ -36,15 +34,25 @@ function keyPressed(){
   }
 }
 
-function draw () {
-    background (0);
-}
+// function draw () {
+//     background (0);
+// }
  
 
 
 
 function level1(){
 
+  loop()
+  let gravity = createVector(0,0.1);
+  character.applyForce (gravity);
+
+
+
+  translate (-character.pos.x+50,0)
+  character.update();
+  character.checkEdges();
+  character.display();
 
 for(let x = 0; x < width*5; x = x + 300){
   fill (0,255,0);
