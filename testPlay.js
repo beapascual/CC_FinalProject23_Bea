@@ -1,40 +1,32 @@
-let ball, floor;
+let dots;
+let i = 25;
 
 function setup() {
-	new Canvas(238, 200);
-	world.gravity.y = 10;
+	new Canvas(500, 500);
 
-	ball = new Sprite();
-	ball.diameter = 50;
-	ball.x = 0
-	ball.y = 180;
-	ball.vel.x = 2
+	dots = new Group();
+	dots.color = 'yellow';
+	dots.y = 25;
+	dots.diameter = 10;
+	
+	while (dots.length < 24) {
+		let dot = new dots.Sprite();
+		dot.x = dots.length * 20;
+	}
 
-	floor = new Sprite();
-	floor.x = 0
-	floor.y = 190;
-	floor.w = 50;
-	floor.h = 5;
-	floor.collider = 'static';
+	player = new Sprite(0,0,i);
 
-	floor2 = new Sprite();
-	floor2.x = 100
-	floor2.y = 150;
-	floor2.w = 50;
-	floor2.h = 5;
-	floor2.collider = 'static';
+	player.overlaps(dots, collect, grow);
+}
+function collect(player, dot) {
+	dot.remove();
+}
+
+function grow (player, dot){
+	player.diameter += 10
 }
 
 function draw() {
-	translate (-ball.x + 50, 0)
 	clear();
-
-}
-
-function keyPressed(){
-
-
-if (key === ' '){
-    ball.vel.y = -5
-  }
+	player.moveTowards(mouse);
 }

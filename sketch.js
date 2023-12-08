@@ -1,5 +1,6 @@
 let ball, floor;
 
+
 function setup() {
 	new Canvas(400, 400);
 	world.gravity.y = 10;
@@ -23,6 +24,14 @@ function setup() {
 	floor2.w = 50;
 	floor2.h = 5;
 	floor2.collider = 'static';
+
+  
+    obstacle = new Sprite (200,300,50,'triangle');
+
+    obstacles = new Group (obstacle)
+
+
+  
 }
 
 function draw() {
@@ -32,6 +41,8 @@ function draw() {
   if(ball.x >= width*5){
     ball.vel.x = 0
   }
+
+
 
 }
 
