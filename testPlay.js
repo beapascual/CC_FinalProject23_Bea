@@ -6,15 +6,33 @@ function setup() {
 
 	ball = new Sprite();
 	ball.diameter = 50;
-	ball.y = 30;
+	ball.x = 0
+	ball.y = 180;
+	ball.vel.x = 2
 
 	floor = new Sprite();
+	floor.x = 0
 	floor.y = 190;
-	floor.w = 238;
+	floor.w = 50;
 	floor.h = 5;
 	floor.collider = 'static';
+
+	floor2 = new Sprite();
+	floor2.x = 100
+	floor2.y = 150;
+	floor2.w = 50;
+	floor2.h = 5;
+	floor2.collider = 'static';
 }
 
 function draw() {
 	clear();
+}
+
+function keyPressed(){
+
+
+if (key === ' '){
+    ball.vel.y = -5
+  }
 }
