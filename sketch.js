@@ -3,14 +3,14 @@
 let x;
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(800, 600);
   character = new Character;
 
 }
 
 function keyPressed(){
   if (key === ' '){
-    let jump = createVector(0, -4.5 );
+    let jump = createVector(0, -5 );
     character.applyForce(jump);
   }
 }
@@ -29,8 +29,12 @@ function draw() {
   character.checkEdges();
   character.display();
   
-for(let x = 0; x < width*5; x = x + 300 ){
+for(let x = 0; x < width*5; x = x + 300){
   fill (0,255,0);
-  triangle(x + 400,height,x+450,height,x+425,height-50);
+  triangle(x + 400,400,x+450,400,x+425,400-50);
+  fill (127)
 }
+rect (0,400,width*6,height)
+rect (0,0,width*6,200)
+
 }
