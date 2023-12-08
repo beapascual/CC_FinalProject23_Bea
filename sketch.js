@@ -2,6 +2,7 @@
 
 let x;
 let button;
+let option;
 
 function setup() {
   createCanvas(800, 600);
@@ -10,7 +11,7 @@ function setup() {
   button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
   button.position (330,130); // position where button is
   button.style ('font-size', '30px'); // size of letters in button
-  button.mousePressed(askQuestion)
+  button.mousePressed(option = 1)
 
 }
 
@@ -21,8 +22,11 @@ function keyPressed(){
   }
 }
 
-function askQuestion() {
+function draw() {
   // put drawing code here
+  if (option === 1){
+
+  
   background(0);
 
   let gravity = createVector(0,0.1);
@@ -48,4 +52,5 @@ fill (127)
 rect (0,400,width*6,height)
 rect (0,0,width*6,200)
 
+}
 }
