@@ -12,14 +12,24 @@ function setup() {
   fill (100,0,100); 
   rect(0,0,width,height);
 
-  button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
-  button.position (330,130); // position where button is
-  button.style ('font-size', '30px'); // size of letters in button
-  button.mousePressed();
+  // button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
+  // button.position (330,130); // position where button is
+  // button.style ('font-size', '30px'); // size of letters in button
+  // button.mousePressed();
 
 
+  mic = new p5.AudioIn();
+  mic.start();
+  
+  // Create a new amplitude analyzer and patch into input
+  amp = new p5.Amplitude();
+  amp.setInput(mic);
  
 
+}
+
+function touchStarted() {
+  getAudioContext().resume();
 }
 
 function keyPressed(){
@@ -32,6 +42,10 @@ function keyPressed(){
   // }
 }
 
+function mousePressed(){
+  option++
+}
+
 
  
 
@@ -39,11 +53,11 @@ function keyPressed(){
 
 function draw(){
 
-// if (option === 0){
-//   background (100,0,100); 
-// }
+if (option === 0){
+  background (100,0,100); 
+}
 
-// if (option === 1){
+if (option === 1){
 
   background(0);
 
@@ -71,5 +85,17 @@ rect (0,400,width*6,height)
 rect (0,0,width*6,200)
 
 }
-//}
+
+if (option === 2){
+  noStroke();
+  fill(0, 10);
+  rect(0, 0, width, height);
+  // The analyze() method returns values between 0 and 1,&nbsp;
+  // so map() is used to convert the values to larger numbers
+  scale_ = map(amp.getLevel(), 0, 1.0, 10, width);
+  // Draw the circle based on the volume
+  fill(255);
+  ellipse(width/2, height/2, scale_, scale_);
+}
+}
  
