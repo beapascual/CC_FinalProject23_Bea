@@ -1,18 +1,21 @@
-let player, pillar;
+let ball, floor;
 
 function setup() {
-	new Canvas(60, 342);
+	new Canvas(400, 400);
 	world.gravity.y = 10;
 	
-	pillar = new Sprite(30, 362, 30, 500, 'static')
+	ball = new Sprite();
+	ball.diameter = 50
 	player = new Sprite(30, 0, 50);
+
+	floor1 = new Sprite();
+	floor1.y = 300
+	floor1.w = 250
+	floor1.h = 5
+	floor1.collider = 'static'
 }
 
 function draw() {
 	clear();
 
-	if (player.collides(pillar)) {
-		player.vel.y = -5;
-		pillar.h -= 52;
-	}
 }
