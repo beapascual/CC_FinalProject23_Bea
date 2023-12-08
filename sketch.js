@@ -1,10 +1,16 @@
 //https://www.youtube.com/watch?v=Ouza_4SsbLc
 
 let x;
+let button;
 
 function setup() {
   createCanvas(800, 600);
-  character = new Character;
+  character = new Character();
+  
+  button = createButton("Ask 8Ball"); // creates button that says "Ask 8Ball"
+  button.position (330,130); // position where button is
+  button.style ('font-size', '30px'); // size of letters in button
+  button.mousePressed(askQuestion)
 
 }
 
@@ -15,7 +21,7 @@ function keyPressed(){
   }
 }
 
-function draw() {
+function askQuestion() {
   // put drawing code here
   background(0);
 
