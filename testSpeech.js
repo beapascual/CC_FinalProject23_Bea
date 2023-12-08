@@ -42,5 +42,6 @@ foo = new p5.Speech(); // speech synthesis object
 }
 
 function draw() {
-  
+  fill(255)
+    rect (0,0,15,15)
 }
