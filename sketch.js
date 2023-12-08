@@ -30,9 +30,25 @@ function setup() {
 
     obstacles = new Group (obstacle)
 
-
+    dots = new Group();
+    dots.color = 'yellow';
+    dots.y = 275;
+    dots.x = 200
+    dots.diameter = 10;
+    
+    while (dots.length < 24) {
+      let dot = new dots.Sprite();
+      dot.x = dots.length * 20;
+    }
   
-}
+  
+    ball.overlaps(dots, collect);
+  }
+  function collect(ball, dot) {
+    dot.remove();
+  }
+  
+
 
 function draw() {
 	translate (-ball.x + 50, 0)
