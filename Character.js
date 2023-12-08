@@ -31,9 +31,15 @@ class Character{
          if(this.pos.y < 200){
                 this.vel.y *= 0;
                 this.pos.y = 200
+         }
 
+                if(this.pos.x > width*6){
+                    this.vel.x *= 0;
+                    this.pos.x = width*6
+    
+            }
         }
     }
-}
+
 
 
