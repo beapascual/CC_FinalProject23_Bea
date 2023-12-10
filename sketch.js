@@ -1,31 +1,23 @@
-let ball, floor;
+let player, floor;
 
 
 function setup() {
 	new Canvas(2500, 400);
 	world.gravity.y = 10;
 
-	ball = new Sprite();
-	ball.diameter = 50;
-	ball.x = 0
-	ball.y = 275;
+	player = new Sprite();
+	player.x = 0
+	player.y = 200;
+  player.img = 'images/bee.png'
+  player.scale = 0.05
+  // player.rotationLock = false
 	// ball.vel.x = 4
   
 
 
-	floor = new Sprite(0,300,5000,5);
-	// floor.x = 0
-	// floor.y = 300;
-	// floor.w = 400;
-	// floor.h = 5;
-	floor.collider = 'static';
+	floor = new Sprite(0,300,5000,5, 'static');
 
-	// floor2 = new Sprite();
-	// floor2.x = 100
-	// floor2.y = 250;
-	// floor2.w = 50;
-	// floor2.h = 5;
-	// floor2.collider = 'static';
+
 
   for (let j = 1; j<8; j++){
 
@@ -56,12 +48,12 @@ function setup() {
 
 
 function draw() {
-	translate (-ball.x + 50, 0)
+	translate (-player.x + 50, 0)
 	clear();
-  if(ball.x < 2400){
-    ball.vel.x = 4
+  if(player.x < 2400){
+    player.vel.x = 4
   } else{
-    ball.vel.x = 0
+    player.vel.x = 0
   }
   background(255)
 
@@ -79,10 +71,10 @@ function keyPressed(){
 
 
 if (key === ' '){
-    ball.vel.y = -5
+    player.vel.y = -5
   }
 }
 
 function stop(){
-  ball.vel.x = 0
+  player.vel.x = 0
 }
