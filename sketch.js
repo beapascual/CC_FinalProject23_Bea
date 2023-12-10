@@ -68,6 +68,10 @@ function draw() {
 
 
 player.collide(obstacle, stop);
+
+if (player.y > height){
+  stop();
+}
  
 
 text ("LIVES: " + lives, player.x, 20);
@@ -89,5 +93,7 @@ if (key === ' '){
 
 function stop(){
   player.x = 0
+  player. y = 200
   player.vel.x = 0
+  lives --
 }
