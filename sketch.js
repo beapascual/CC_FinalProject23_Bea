@@ -1,4 +1,4 @@
-let player, floor;
+let player, floor, cloud;
 let lives = 3;
 let coins = 0;
 
@@ -19,15 +19,22 @@ function setup() {
 
 	// floor = new Sprite(0,300,5000,5, 'static');
 
+clouds = new Group ();
 
+for (let j = 1; j < 6; j++){
+  let cloud = new Sprite(400 * j, 250)
+  cloud.img = 'images/cloud.png'
+  cloud.collider = 'static'
+  cloud.scale = (0.1)
+}
 
-  for (let j = 1; j<8; j++){
+//   for (let j = 1; j<8; j++){
 
   
-    obstacle = new Sprite (300*j,250,50,'triangle');
-    obstacle.collider = 'static'
+//     obstacle = new Sprite (300*j,250,50,'triangle');
+//     obstacle.collider = 'static'
 
-}
+// }
 
 textSize(20);
     // obstacles = new Group (obstacle)
@@ -43,7 +50,7 @@ textSize(20);
   //     dot.x = dots.length * 20;
   //   }
   
-  
+   
   //   ball.overlaps(dots, collect);
   // }
   // function collect(ball, dot) {
@@ -64,23 +71,24 @@ function draw() {
   } else{
     player.vel.x = 0
   }
-  background(255)
-
-
-player.collide(obstacle, stop);
-
-if (player.y > height){
-  stop();
+  background(0,0,100)
 }
+
+
+player.collide(cloud, stop);
+
+// if (player.y > height){
+//   stop();
+// }
  
 
-text ("LIVES: " + lives, player.x, 20);
-text ("COINS: " + coins, player.x, 50);
+// text ("LIVES: " + lives, player.x, 20);
+// text ("COINS: " + coins, player.x, 50);
 
 
 
 
-}
+// }
 
 function keyPressed(){
 
