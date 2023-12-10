@@ -12,57 +12,58 @@ function setup() {
 	player.y = 200;
   player.img = 'images/bee.png'
   player.scale = 0.05
-  // player.rotationLock = false
-	// ball.vel.x = 4
+
   
 
 
-	// floor = new Sprite(0,300,5000,5, 'static');
+// floor = new Sprite(0,300,100,5, 'static');
+dots = new Group();
+dots.color = 'yellow';
+dots.y = 200;
+dots.collider = 'kinematic'
 
-clouds = new Group ();
-
-for (let j = 1; j < 6; j++){
-  let cloud = new Sprite(400 * j, 250)
-  cloud.img = 'images/cloud.png'
-  cloud.collider = 'kinematic'
-  cloud.scale = (0.1)
-  cloud.w = 125
-  cloud.h = 50
+while (dots.length < 24) {
+  let dot = new dots.Sprite();
+  dot.x = dots.length * 100 + 300;
+  dot.diameter = 10
 }
 
-//   for (let j = 1; j<8; j++){
+player.overlaps(dots, collect);
 
-  
-//     obstacle = new Sprite (300*j,250,50,'triangle');
-//     obstacle.collider = 'static'
 
-// }
-
-textSize(20);
-    // obstacles = new Group (obstacle)
-
-  //   dots = new Group();
-  //   dots.color = 'yellow';
-  //   dots.y = 275;
-  //   dots.x = 200
-  //   dots.diameter = 10;
+clouds = new Group();
+    clouds.img = 'images/cloud.png';
+    clouds.y = 200;
+    clouds.scale = 0.1
+    clouds.collider = 'kinematic'
     
-  //   while (dots.length < 24) {
-  //     let dot = new dots.Sprite();
-  //     dot.x = dots.length * 20;
-  //   }
+    while (clouds.length < 24) {
+      let cloud = new clouds.Sprite();
+      cloud.x = clouds.length * 400 + 500;
+      cloud.w = 125;
+      cloud.h = 50
+    }
   
    
-  //   ball.overlaps(dots, collect);
-  // }
-  // function collect(ball, dot) {
-  //   dot.remove();
-  // }
+    // player.overlaps(dots, collect);
+
+
+textSize(20);
+  
+
+
+  function collect(player, dot) {
+    dot.remove();
+    coins++
+  }
 }
+
   
 
 
 function draw() {
+
+  if (lives > 0){
 	translate (-player.x + 50, 0)
 	clear();
   background(0,0,100)
@@ -73,22 +74,26 @@ function draw() {
  } else if (player.x > 2400) {
   player.vel.x = 0
  }
+  }
 
   if (player.collides(clouds)){
-    setup();
+    player.x = 0
+    lives --
+    coins = 0
   }
 
 
   if (player.y > height){
-  setup();
+  player.x = 0
+  player.y = 200
   lives --
   }
 
 
 if (lives === 0){
   clearSprites();
-  // background (100,0,0);
-  // text ("YOU LOSE", windowWidth/2, windowHeight/2);
+  background (100,0,0);
+  text ("YOU LOSE", windowWidth/2, windowHeight/2);
 }
  
 
@@ -106,10 +111,7 @@ if (key === ' '){
   }
 }
 
-function loseLife(){
-  setup();
-  lives --
-}
+
 
 function clearSprites(){
   clouds.removeSprites();
