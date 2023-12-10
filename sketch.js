@@ -26,6 +26,8 @@ for (let j = 1; j < 6; j++){
   cloud.img = 'images/cloud.png'
   cloud.collider = 'static'
   cloud.scale = (0.1)
+  cloud.w = 125
+  cloud.h = 50
 }
 
 //   for (let j = 1; j<8; j++){
@@ -72,10 +74,11 @@ function draw() {
     player.vel.x = 0
   }
   background(0,0,100)
+
+
+
+player.collides(clouds, stop);
 }
-
-
-player.collide(cloud, stop);
 
 // if (player.y > height){
 //   stop();
