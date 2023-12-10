@@ -17,7 +17,7 @@ function setup() {
   
 
 
-	floor = new Sprite(0,300,5000,5, 'static');
+	// floor = new Sprite(0,300,5000,5, 'static');
 
 
 
@@ -25,6 +25,7 @@ function setup() {
 
   
     obstacle = new Sprite (300*j,250,50,'triangle');
+    obstacle.collider = 'static'
 
 }
 
@@ -69,10 +70,8 @@ function draw() {
 player.collide(obstacle, stop);
  
 
-push ()
-text ("LIVES: " + lives, 20, 20);
-text ("COINS: " + coins, 20, 50);
-pop ()
+text ("LIVES: " + lives, player.x, 20);
+text ("COINS: " + coins, player.x, 50);
 
 
 
