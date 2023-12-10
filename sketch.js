@@ -2,26 +2,22 @@ let ball, floor;
 
 
 function setup() {
-	new Canvas(5000, 400);
+	new Canvas(400, 400);
 	world.gravity.y = 10;
 
 	ball = new Sprite();
 	ball.diameter = 50;
 	ball.x = 0
 	ball.y = 275;
-	ball.vel.x = 4
+	// ball.vel.x = 4
+  
 
-  if(ball.pos.x === width-50){
-    ball.vel.x = 0
-    ball.pos.x = 0
-    ball.pos.y = 275
-  }
 
-	floor = new Sprite();
-	floor.x = 0
-	floor.y = 300;
-	floor.w = width;
-	floor.h = 5;
+	floor = new Sprite(0,300,400,5);
+	// floor.x = 0
+	// floor.y = 300;
+	// floor.w = 400;
+	// floor.h = 5;
 	floor.collider = 'static';
 
 	// floor2 = new Sprite();
@@ -60,10 +56,20 @@ function setup() {
 
 
 function draw() {
-	translate (-ball.x + 50, 0)
+	// translate (-ball.x + 50, 0)
 	clear();
+  if(ball.x < 500){
+    ball.vel.x = 4
+  } else{
+    ball.vel.x = 0
+  }
+  background(255)
+
 
  
+
+ 
+
 
 
 
@@ -75,4 +81,8 @@ function keyPressed(){
 if (key === ' '){
     ball.vel.y = -5
   }
+}
+
+function stop(){
+  ball.vel.x = 0
 }
