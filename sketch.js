@@ -1,4 +1,6 @@
 let player, floor;
+let lives = 3;
+let coins = 0;
 
 
 function setup() {
@@ -22,8 +24,11 @@ function setup() {
   for (let j = 1; j<8; j++){
 
   
-    obstacle = new Sprite (300*j,300,50,'triangle');
+    obstacle = new Sprite (300*j,250,50,'triangle');
+
 }
+
+textSize(20);
     // obstacles = new Group (obstacle)
 
   //   dots = new Group();
@@ -48,6 +53,9 @@ function setup() {
 
 
 function draw() {
+
+
+ 
 	translate (-player.x + 50, 0)
 	clear();
   if(player.x < 2400){
@@ -58,9 +66,13 @@ function draw() {
   background(255)
 
 
+player.collide(obstacle, stop);
  
 
- 
+push ()
+text ("LIVES: " + lives, 20, 20);
+text ("COINS: " + coins, 20, 50);
+pop ()
 
 
 
@@ -70,11 +82,13 @@ function draw() {
 function keyPressed(){
 
 
+
 if (key === ' '){
     player.vel.y = -5
   }
 }
 
 function stop(){
+  player.x = 0
   player.vel.x = 0
 }
