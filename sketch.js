@@ -28,7 +28,6 @@ while (dots.length < 24) {
   dot.diameter = 10
 }
 
-player.overlaps(dots, collect);
 
 
 clouds = new Group();
@@ -45,18 +44,12 @@ clouds = new Group();
     }
   
    
-    // player.overlaps(dots, collect);
+    player.overlaps(dots, collect);
 
 
 textSize(20);
-  
-
-
-  function collect(player, dot) {
-    dot.remove();
-    coins++
-  }
 }
+
 
   
 
@@ -76,6 +69,8 @@ function draw() {
  }
   }
 
+
+
   if (player.collides(clouds)){
     player.x = 0
     lives --
@@ -89,11 +84,14 @@ function draw() {
   lives --
   }
 
+  // if (coins = 10){
+  //   lives++
+  //   coins = 0
+  // }
+
 
 if (lives === 0){
   clearSprites();
-  background (100,0,0);
-  text ("YOU LOSE", windowWidth/2, windowHeight/2);
 }
  
 
@@ -103,6 +101,11 @@ text ("LIVES: " + lives, player.x, 20);
 text ("COINS: " + coins, player.x, 50);
 
 
+}
+
+function collect(){
+  dot.remove();
+  coins++
 }
 
 function keyPressed(){
@@ -116,4 +119,5 @@ if (key === ' '){
 function clearSprites(){
   clouds.removeSprites();
   player.remove();
+  dots.removeSprites();
 }
