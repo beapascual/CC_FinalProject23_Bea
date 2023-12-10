@@ -12,7 +12,6 @@ function setup() {
 	player.y = 200;
   player.img = 'images/bee.png'
   player.scale = 0.05
-  player.vel.x = 4
   // player.rotationLock = false
 	// ball.vel.x = 4
   
@@ -64,23 +63,27 @@ textSize(20);
 
 
 function draw() {
-
-
-if (lives > 0){
 	translate (-player.x + 50, 0)
 	clear();
   background(0,0,100)
 
 
+ if (player.x <= 2400){
+  player.vel.x = 4
+ } else if (player.x > 2400) {
+  player.vel.x = 0
+ }
 
-
-  player.collides(clouds, stop);
+  if (player.collides(clouds)){
+    setup();
+  }
 
 
   if (player.y > height){
-  stop();
+  setup();
+  lives --
   }
-}
+
 
 if (lives === 0){
   clearSprites();
@@ -98,18 +101,13 @@ text ("COINS: " + coins, player.x, 50);
 }
 
 function keyPressed(){
-
-
-
 if (key === ' '){
     player.vel.y = -5
   }
 }
 
-function stop(){
-  player.x = 0
-  player. y = 200
-  player.vel.x = 0
+function loseLife(){
+  setup();
   lives --
 }
 
