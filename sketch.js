@@ -2,7 +2,7 @@ let ball, floor;
 
 
 function setup() {
-	new Canvas(400, 400);
+	new Canvas(2500, 400);
 	world.gravity.y = 10;
 
 	ball = new Sprite();
@@ -13,7 +13,7 @@ function setup() {
   
 
 
-	floor = new Sprite(0,300,400,5);
+	floor = new Sprite(0,300,5000,5);
 	// floor.x = 0
 	// floor.y = 300;
 	// floor.w = 400;
@@ -56,9 +56,9 @@ function setup() {
 
 
 function draw() {
-	// translate (-ball.x + 50, 0)
+	translate (-ball.x + 50, 0)
 	clear();
-  if(ball.x < 500){
+  if(ball.x < 2400){
     ball.vel.x = 4
   } else{
     ball.vel.x = 0
