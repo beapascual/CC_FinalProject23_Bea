@@ -6,6 +6,7 @@ let coins = 0;
 function setup() {
 	new Canvas(2500, 400);
 	world.gravity.y = 10;
+  textSize(20);
 
 	player = new Sprite();
 	player.x = 0
@@ -16,21 +17,23 @@ function setup() {
   
 
 
-// floor = new Sprite(0,300,100,5, 'static');
-dots = new Group();
-dots.color = 'yellow';
-dots.y = 200;
-dots.collider = 'kinematic'
-
-while (dots.length < 24) {
-  let dot = new dots.Sprite();
-  dot.x = dots.length * 100 + 300;
-  dot.diameter = 10
-}
 
 
+  dots = new Group();
+    dots.color = 'yellow';
+    dots.y = 200;
+    dots.collider = 'kinematic'
 
-clouds = new Group();
+    while (dots.length < 24) {
+      let dot = new dots.Sprite();
+      dot.x = dots.length * 100 + 300;
+      dot.diameter = 10
+    }
+
+    player.collides(dots, collect)
+
+
+  clouds = new Group();
     clouds.img = 'images/cloud.png';
     clouds.y = 200;
     clouds.scale = 0.1
@@ -44,14 +47,13 @@ clouds = new Group();
     }
   
    
-    player.overlaps(dots, collect);
 
-
-textSize(20);
 }
 
-
-  
+function collect(){
+  dot.remove();
+  coins++
+}
 
 
 function draw() {
@@ -69,7 +71,7 @@ function draw() {
  }
   }
 
-
+  player.overlaps(dots, collect); 
 
   if (player.collides(clouds)){
     player.x = 0
@@ -103,10 +105,6 @@ text ("COINS: " + coins, player.x, 50);
 
 }
 
-function collect(){
-  dot.remove();
-  coins++
-}
 
 function keyPressed(){
 if (key === ' '){
@@ -119,5 +117,4 @@ if (key === ' '){
 function clearSprites(){
   clouds.removeSprites();
   player.remove();
-  dots.removeSprites();
 }
