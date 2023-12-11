@@ -78,7 +78,6 @@ function draw() {
 
   }
 if (level === 2){
-  setup();
   if (lives > 0){
     translate (-player.x + 50, 0)
     clear();
