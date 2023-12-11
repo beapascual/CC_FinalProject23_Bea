@@ -4,9 +4,10 @@ let coins = 0;
 
 
 function setup() {
-	new Canvas(2500, 400);
+	new Canvas(3000, 400);
 	world.gravity.y = 10;
   textSize(20);
+
 
 	player = new Sprite();
 	player.x = 0
@@ -19,18 +20,18 @@ function setup() {
 
 
 
-  dots = new Group();
-    dots.color = 'yellow';
-    dots.y = 200;
-    dots.collider = 'kinematic'
+  // dots = new Group();
+  //   dots.color = 'yellow';
+  //   dots.y = 200;
+  //   dots.collider = 'kinematic'
 
-    while (dots.length < 24) {
-      let dot = new dots.Sprite();
-      dot.x = dots.length * 100 + 300;
-      dot.diameter = 10
-    }
+  //   while (dots.length < 24) {
+  //     let dot = new dots.Sprite();
+  //     dot.x = dots.length * 100 + 300;
+  //     dot.diameter = 10
+  //   }
 
-    player.collides(dots, collect)
+    // player.collides(dots, collect)
 
 
   clouds = new Group();
@@ -39,7 +40,7 @@ function setup() {
     clouds.scale = 0.1
     clouds.collider = 'kinematic'
     
-    while (clouds.length < 24) {
+    while (clouds.length < 5) {
       let cloud = new clouds.Sprite();
       cloud.x = clouds.length * 400 + 500;
       cloud.w = 125;
@@ -50,10 +51,10 @@ function setup() {
 
 }
 
-function collect(){
-  dot.remove();
-  coins++
-}
+// function collect(){
+//   dot.remove();
+//   coins++
+// }
 
 
 function draw() {
@@ -64,14 +65,15 @@ function draw() {
   background(0,0,100)
 
 
- if (player.x <= 2400){
+ if (player.x <= 2800){
   player.vel.x = 4
- } else if (player.x > 2400) {
+ } else if (player.x > 2800) {
   player.vel.x = 0
+  clearSprites();
  }
   }
 
-  player.overlaps(dots, collect); 
+  // player.overlaps(dots, collect); 
 
   if (player.collides(clouds)){
     player.x = 0
@@ -98,9 +100,9 @@ if (lives === 0){
  
 
 
-
-text ("LIVES: " + lives, player.x, 20);
-text ("COINS: " + coins, player.x, 50);
+fill(255)
+text ("LIVES: " + lives, player.x, 50);
+text ("COINS: " + coins, player.x, 75);
 
 
 }
