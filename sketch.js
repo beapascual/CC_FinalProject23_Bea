@@ -75,6 +75,7 @@ function setGradient(g1, g2) {
 
 function draw() {
   if (level === 1){
+    level1();
     if (lives > 0){
 	    translate (-player.x + 50, 0)
 	    clear();
