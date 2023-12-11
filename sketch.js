@@ -17,7 +17,7 @@ function setup() {
   textSize(20); // world basics
 
 	player = new Sprite();
-	player.x = 0
+	player.x = 50
 	player.y = 200;
   player.img = img1
   player.scale = 0.05 //player settings
@@ -51,16 +51,6 @@ function setup() {
 //   coins++
 // }
 
-function level1(){
-  while (clouds.length < 5) {
-    let cloud = new clouds.Sprite();
-    cloud.x = clouds.length * 400 + 500;
-    cloud.y = 200
-    cloud.w = 125;
-    cloud.h = 50
-  }
-}//cloud pattern for level1
-
 
 function setGradient(g1, g2) {
   noFill();
@@ -71,6 +61,29 @@ function setGradient(g1, g2) {
     line(0, y, width, y); // makes the color appear
   }
 } // gradient for level 2 (taken from midterm)
+
+
+function level1(){
+  while (clouds.length < 5) {
+    let cloud = new clouds.Sprite();
+    cloud.x = clouds.length * 400 + 500;
+    cloud.y = 200
+    cloud.w = 125;
+    cloud.h = 50
+  }
+}//cloud pattern for level1
+
+function level2(){
+  while (clouds.length < 5) {
+    let cloud = new clouds.Sprite();
+    cloud.x = clouds.length * 800 + 500;
+    cloud.y = 100
+    cloud.w = 125;
+    cloud.h = 50
+  }
+}
+
+
 
 
 function draw() {
@@ -87,7 +100,8 @@ function draw() {
   }
 
   if (level === 2){
-    player.x = 0
+    level2();
+    player.x = 50
     if (lives > 0){
     translate (-player.x + 50, 0)
     clear();
@@ -99,7 +113,7 @@ function draw() {
   }
 
   if (level === 3){
-    player.x = 0
+    player.x = 50
     if (lives > 0){
     translate (-player.x + 50, 0)
     clear();
@@ -117,19 +131,19 @@ function draw() {
 
 
   if (player.collides(clouds)){
-    player.x = 0
+    player.x = 50
     lives --
     coins = 0
   }
 
   if (player.y > height){
-  player.x = 0
+  player.x = 50
   player.y = 200
   lives --
   }
   if (player.y < 0){
-    player.x = 0
-   player.y = 200
+    player.x = 50
+    player.y = 200
     lives --
   }
 
@@ -157,8 +171,9 @@ function draw() {
 
 function keyPressed(){
 if (key === ' '){
-    player.vel.y = -5
     player.vel.x = 4
+    player.vel.y = -5
+    
   }
 }
 
