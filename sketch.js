@@ -1,6 +1,7 @@
 let player, floor, cloud;
 let lives = 3;
 let coins = 0;
+let level = 1
 
 
 function setup() {
@@ -59,6 +60,7 @@ function setup() {
 
 function draw() {
 
+  if (level === 1){
   if (lives > 0){
 	translate (-player.x + 50, 0)
 	clear();
@@ -68,10 +70,14 @@ function draw() {
  if (player.x <= 2800){
   player.vel.x = 4
  } else if (player.x > 2800) {
-  player.vel.x = 0
-  clearSprites();
+  level = 2
  }
   }
+}
+if (level === 2){
+  background (0)
+  // clearSprites();
+}
 
   // player.overlaps(dots, collect); 
 
@@ -96,13 +102,13 @@ function draw() {
 
 if (lives === 0){
   clearSprites();
-}
  
 
 
 fill(255)
 text ("LIVES: " + lives, player.x, 50);
 text ("COINS: " + coins, player.x, 75);
+  }
 
 
 }
@@ -112,11 +118,14 @@ function keyPressed(){
 if (key === ' '){
     player.vel.y = -5
   }
+if (key === 'l'){
+  level ++
+}
 }
 
 
 
-function clearSprites(){
-  clouds.removeSprites();
-  player.remove();
-}
+// function clearSprites(){
+//   clouds.removeSprites();
+//   player.remove();
+// }
