@@ -60,6 +60,8 @@ function setup() {
 
 function draw() {
 
+ 
+
   if (level === 1){
   if (lives > 0){
 	translate (-player.x + 50, 0)
@@ -73,9 +75,22 @@ function draw() {
   level = 2
  }
   }
-}
+
+  }
 if (level === 2){
-  background (0)
+  setup();
+  if (lives > 0){
+    translate (-player.x + 50, 0)
+    clear();
+    background(0)
+  
+  
+   if (player.x <= 2800){
+    player.vel.x = 4
+   } else if (player.x > 2800) {
+    level = 2
+   }
+    }
   // clearSprites();
 }
 
@@ -102,16 +117,17 @@ if (level === 2){
 
 if (lives === 0){
   clearSprites();
+}
  
 
 
 fill(255)
 text ("LIVES: " + lives, player.x, 50);
 text ("COINS: " + coins, player.x, 75);
-  }
-
 
 }
+
+
 
 
 function keyPressed(){
