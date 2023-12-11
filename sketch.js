@@ -75,11 +75,6 @@ function setGradient(g1, g2) {
 
 function draw() {
   if (level === 1){
-    level1();
-    fill (255)
-    stroke (0)
-    strokeWeight(2)
-    text ("LEVEL 1", player.x + 500, 50);
     if (lives > 0){
 	    translate (-player.x + 50, 0)
 	    clear();
@@ -151,6 +146,7 @@ function draw() {
   stroke(0)
   strokeWeight(2)
   text ("LIVES: " + lives, player.x, 50);
+  text ("LEVEL" + level, player.x + 500, 50);
 // text ("COINS: " + coins, player.x, 75);
 
 }
@@ -163,9 +159,6 @@ if (key === ' '){
     player.vel.y = -5
     player.vel.x = 4
   }
-if (key === 'l'){
-  level ++
-}
 }
 
 
