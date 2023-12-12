@@ -3,6 +3,7 @@ let lives = 3;
 let coins = 0;
 let level = 1
 let img1, img2;
+let bool1, bool2, bool3, bool4;
 
 
 function preload(){
@@ -14,7 +15,11 @@ function preload(){
 function setup() {
 	new Canvas(3000, 400);
 	world.gravity.y = 10;
-  textSize(20); // world basics
+  textSize(20); 
+  bool1 = false
+  bool2 = false
+  bool3 = false
+  bool4 = false// world basics
 
 	player = new Sprite();
 	player.x = 50
@@ -88,8 +93,13 @@ function level2(){
 
 function draw() {
   if (level === 1){
-    level1();
+    if (!bool1){
+      level1();
+      player.x = 50
+      bool1 = true
+    }
     if (lives > 0){
+      level1();
 	    translate (-player.x + 50, 0)
 	    clear();
       background(115,239,245)
@@ -100,8 +110,11 @@ function draw() {
   }
 
   if (level === 2){
-    level2();
-    player.x = 50
+    if (!bool2){
+      level2();
+      player.x = 50
+      bool2 = true
+    }
     if (lives > 0){
     translate (-player.x + 50, 0)
     clear();
@@ -113,7 +126,11 @@ function draw() {
   }
 
   if (level === 3){
-    player.x = 50
+    if (!bool3){
+      level2();
+      player.x = 50
+      bool3 = true
+    }
     if (lives > 0){
     translate (-player.x + 50, 0)
     clear();
@@ -125,8 +142,12 @@ function draw() {
   }
 
   if (level === 4){
-    background (255);
+    if (!bool4){
+      background (255);
     clearSprites();
+      bool4 = true
+    }
+    
   }
 
 
