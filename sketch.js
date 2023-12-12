@@ -4,6 +4,7 @@ let coins = 0;
 let level = 1
 let img1, img2;
 let bool1, bool2, bool3, bool4;
+let bool5;
 
 
 function preload(){
@@ -19,13 +20,16 @@ function setup() {
   bool1 = false
   bool2 = false
   bool3 = false
-  bool4 = false// world basics
+  bool4 = false
+  bool5 = false// world basics
 
 	player = new Sprite();
 	player.x = 50
 	player.y = 200;
   player.img = img1
   player.scale = 0.05 //player settings
+  player.collider = 'kinematic'
+  
 
   clouds = new Group();
   clouds.img = img2;
@@ -92,11 +96,16 @@ function level2(){
 
 
 function draw() {
+  if (!bool5){
+    player.collider ='dynamic'
+  }
+
   if (level === 1){
     if (!bool1){
       level1();
       player.x = 50
       bool1 = true
+      bool5 = false
     }
     if (lives > 0){
       level1();
@@ -114,6 +123,7 @@ function draw() {
       level2();
       player.x = 50
       bool2 = true
+      bool5 = false
     }
     if (lives > 0){
     translate (-player.x + 50, 0)
@@ -130,6 +140,7 @@ function draw() {
       level2();
       player.x = 50
       bool3 = true
+      bool5 = false
     }
     if (lives > 0){
     translate (-player.x + 50, 0)
@@ -194,7 +205,7 @@ function keyPressed(){
 if (key === ' '){
     player.vel.x = 4
     player.vel.y = -5
-    
+    bool5 = true
   }
 }
 
