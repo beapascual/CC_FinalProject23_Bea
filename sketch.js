@@ -96,16 +96,15 @@ function level2(){
 
 
 function draw() {
-  if (!bool5){
-    player.collider ='dynamic'
-  }
+ 
 
   if (level === 1){
     if (!bool1){
       level1();
       player.x = 50
+      player.collider = 'kinematic'
       bool1 = true
-      bool5 = false
+      
     }
     if (lives > 0){
       level1();
@@ -122,8 +121,9 @@ function draw() {
     if (!bool2){
       level2();
       player.x = 50
+      player.collider = 'kinematic'
       bool2 = true
-      bool5 = false
+  
     }
     if (lives > 0){
     translate (-player.x + 50, 0)
@@ -139,8 +139,9 @@ function draw() {
     if (!bool3){
       level2();
       player.x = 50
+      player.collider = 'kinematic'
       bool3 = true
-      bool5 = false
+      
     }
     if (lives > 0){
     translate (-player.x + 50, 0)
@@ -165,7 +166,7 @@ function draw() {
   if (player.collides(clouds)){
     player.x = 50
     lives --
-    coins = 0
+    // coins = 0
   }
 
   if (player.y > height){
@@ -205,7 +206,7 @@ function keyPressed(){
 if (key === ' '){
     player.vel.x = 4
     player.vel.y = -5
-    bool5 = true
+    player.collider = 'dynamic'
   }
 }
 
