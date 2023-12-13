@@ -1,11 +1,11 @@
-let player, floor, cloud;
+let player, floor;
 let lives = 3;
 let coins = 0;
-let level = 1
+let level = 0
 let img1, img2;
 let bool1, bool2, bool3, bool4;
 let bool5;
-
+let cloud;
 
 function preload(){
   img1 = loadImage('images/bee.png')
@@ -39,6 +39,10 @@ function setup() {
   g1 = color(232, 86, 94);
   g2 = color(232, 170, 69);// colors for gradient
 
+  button = createButton ("start");
+  button.position (200,200);
+  button.mousePressed(start)
+
 
 
   // dots = new Group();
@@ -60,6 +64,10 @@ function setup() {
 //   coins++
 // }
 
+function start(){
+  button.hide()
+  level = 1
+}
 
 function setGradient(g1, g2) {
   noFill();
@@ -73,8 +81,9 @@ function setGradient(g1, g2) {
 
 
 function level1(){
+  clouds.remove();
   while (clouds.length < 5) {
-    let cloud = new clouds.Sprite();
+    cloud = new clouds.Sprite();
     cloud.x = clouds.length * 400 + 500;
     cloud.y = 200
     cloud.w = 125;
@@ -83,8 +92,9 @@ function level1(){
 }//cloud pattern for level1
 
 function level2(){
+  clouds.remove();
   while (clouds.length < 5) {
-    let cloud = new clouds.Sprite();
+    cloud = new clouds.Sprite();
     cloud.x = clouds.length * 800 + 500;
     cloud.y = 100
     cloud.w = 125;
@@ -95,19 +105,28 @@ function level2(){
 
 
 
+
 function draw() {
+
+  //level2();
+  if (level === 0){
+    if (!bool4){
+      background (255);
+      bool4 = true
+      // clearSprites();
+    }
+  }
  
 
   if (level === 1){
     if (!bool1){
-      level1();
+      
       player.x = 50
-      player.collider = 'kinematic'
       bool1 = true
       
     }
+    level1();
     if (lives > 0){
-      level1();
 	    translate (-player.x + 50, 0)
 	    clear();
       background(115,239,245)
@@ -119,12 +138,12 @@ function draw() {
 
   if (level === 2){
     if (!bool2){
-      level2();
+      
       player.x = 50
-      player.collider = 'kinematic'
       bool2 = true
   
     }
+    level2();
     if (lives > 0){
     translate (-player.x + 50, 0)
     clear();
@@ -139,7 +158,6 @@ function draw() {
     if (!bool3){
       level2();
       player.x = 50
-      player.collider = 'kinematic'
       bool3 = true
       
     }
@@ -212,7 +230,8 @@ if (key === ' '){
 
 
 
-// function clearSprites(){
-//   clouds.removeSprites();
-//   player.remove();
-// }
+function clearSprites(){
+  clouds.remove();
+  player.remove();
+  // text.remove();
+}
