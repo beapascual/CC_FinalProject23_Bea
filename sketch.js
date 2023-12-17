@@ -4,7 +4,7 @@ let coins = 0;
 let level = 0
 let img1, img2;
 let bool1, bool2, bool3, bool4;
-let bool5;
+let bool;
 let cloud;
 
 function preload(){
@@ -21,7 +21,7 @@ function setup() {
   bool2 = false
   bool3 = false
   bool4 = false
-  bool5 = false// world basics
+  bool = false// world basics
 
 	player = new Sprite();
 	player.x = 50
@@ -106,13 +106,14 @@ function level2(){
 
 
 
+
 function draw() {
 
   //level2();
   if (level === 0){
-    if (!bool4){
+    if (!bool){
       background (255);
-      bool4 = true
+      bool = true
       // clearSprites();
     }
   }
@@ -120,10 +121,10 @@ function draw() {
 
   if (level === 1){
     if (!bool1){
-      
+      text ("LIVES: " + lives, player.x, 50);
+  text ("LEVEL" + level, player.x + 500, 50);
       player.x = 50
       bool1 = true
-      
     }
     level1();
     if (lives > 0){
