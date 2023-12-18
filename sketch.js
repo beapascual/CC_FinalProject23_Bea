@@ -102,6 +102,8 @@ function startScreen(){
 
 function level1(){
   new Canvas (3000,600);
+  player.x = 50
+  player.y = 200
   background(115,239,245)
   fill(255)
   stroke(0)
@@ -153,9 +155,10 @@ function draw() {
  
 
   if (level === 1){
-    level1();
+    
     if (!bool1){
-      player.x = 50
+      level1();
+      // player.x = 50
       bool1 = true
     }
     if (lives > 0){
@@ -236,9 +239,10 @@ function draw() {
   // }
 
   if (lives === 0){
-    
+    if (!loseBool){
     loseScreen();
-    
+    loseBool = true
+    }
   }
 
 
