@@ -8,6 +8,7 @@ let bool;
 let cloud;
 let startBool;
 let loseBool;
+let nextBool
 
 function preload(){
   img1 = loadImage('images/bee.png')
@@ -30,6 +31,7 @@ function setup() {
   bool = false// world basics
   startBool = false
   loseBool = false
+  nextBool = false
 
 
 	player = new Sprite();
@@ -62,7 +64,12 @@ function setup() {
   restartButton.mousePressed(restart)
   restartButton.hide()
 
-
+  nextButton = createButton ("continue");
+  nextButton.position (650,350);
+  nextButton.style('font-size','70px')
+  nextButton.style('background-color','255')
+  nextButton.mousePressed(next)
+  nextButton.hide()
 
 }
 
@@ -100,10 +107,21 @@ function startScreen(){
   startButton.show()
 }
 
+function nextLevel(){
+  clearSprites();
+  new Canvas (1000,600);
+  background(nextImg);
+  nextButton.show()
+}
+
+function next(){
+  nextButton.hide();
+  level++
+  nextBool = false
+}
+
 function level1(){
   new Canvas (3000,600);
-  player.x = 50
-  player.y = 200
   background(115,239,245)
   fill(255)
   stroke(0)
@@ -155,10 +173,10 @@ function draw() {
  
 
   if (level === 1){
-    
+    level1();
     if (!bool1){
-      level1();
-      // player.x = 50
+      player.x = 50
+      player.y = 200
       bool1 = true
     }
     if (lives > 0){
@@ -166,7 +184,11 @@ function draw() {
 	    clear();
       background(115,239,245)
     if (player.x > 2800) {
-      level = 2
+      player.x>2800
+      nextBool = true
+      if (nextBool === true){
+        nextLevel();
+      }
       }
     }
   }
@@ -239,11 +261,9 @@ function draw() {
   // }
 
   if (lives === 0){
-    if (!loseBool){
     loseScreen();
-    loseBool = true
     }
-  }
+  
 
 
   // fill(255)
