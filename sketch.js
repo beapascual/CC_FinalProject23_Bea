@@ -42,6 +42,10 @@ function setup() {
   player.img = img1
   player.scale = 0.05 //player settings
   player.collider = 'kinematic'
+
+  finishLine = new Sprite(2800,300,50,600)
+  finishLine.collider = 'kinematic'
+  
   
 
   clouds = new Group();
@@ -102,10 +106,7 @@ function setGradient(g1, g2) {
 
 function startScreen(){
   new Canvas (1000,600);
-  if (!startBool){
-    clearSprites();
-    startBool = true
-    }
+  clearSprites();
   background(startImg);
   startButton.show()
 }
@@ -171,18 +172,17 @@ function draw() {
  
 
   if (level === 1){
-    level1();
+
+  
     if (!bool1){
       setup();
+      level1();
       bool1 = true
     }
     if (lives > 0){
 	    translate (-player.x + 50, 0)
 	    clear();
-      background(115,239,245)
-    if (player.x > 2800) {
-      nextLevel()
-      }
+      player.overlaps(finishLine,nextLevel)
     }
   }
 
