@@ -84,6 +84,7 @@ function restart(){
   restartButton.hide()
   level = 0
   lives = 3
+  setup();
 }
 
 function setGradient(g1, g2) {
@@ -100,7 +101,7 @@ function setGradient(g1, g2) {
 function startScreen(){
   new Canvas (1000,600);
   if (!startBool){
-    // clearSprites();
+    clearSprites();
     startBool = true
     }
   background(startImg);
@@ -162,21 +163,15 @@ function loseScreen(){
 
 
 function draw() {
-
-  //level2();
   if (level === 0){
-    // if (!bool){
       startScreen();
-    //   bool = true
-    // }
   }
  
 
   if (level === 1){
     level1();
     if (!bool1){
-      player.x = 50
-      player.y = 200
+      setup();
       bool1 = true
     }
     if (lives > 0){
@@ -184,20 +179,14 @@ function draw() {
 	    clear();
       background(115,239,245)
     if (player.x > 2800) {
-      player.x>2800
-      nextBool = true
-      if (nextBool === true){
-        nextLevel();
-      }
+      nextLevel()
       }
     }
   }
 
   if (level === 2){
     if (!bool2){
-      
-      player.x = 50
-      bool2 = true
+      setup()
   
     }
     level2();
@@ -228,20 +217,11 @@ function draw() {
     }
   }
 
-  if (level === 4){
-    if (!bool4){
-      background (255);
-    clearSprites();
-      bool4 = true
-    }
-    
-  }
 
 
   if (player.collides(clouds)){
     player.x = 50
     lives --
-    // coins = 0
   }
 
   if (player.y > height){
@@ -255,10 +235,7 @@ function draw() {
     lives --
   }
 
-  // if (coins = 10){
-  //   lives++
-  //   coins = 0
-  // }
+ 
 
   if (lives === 0){
     loseScreen();
@@ -266,12 +243,12 @@ function draw() {
   
 
 
-  // fill(255)
-  // stroke(0)
-  // strokeWeight(2)
+  fill(255)
+  stroke(0)
+  strokeWeight(2)
   // text ("LIVES: " + lives, player.x, 50);
   // text ("LEVEL" + level, player.x + 500, 50);
-// text ("COINS: " + coins, player.x, 75);
+// text ("SCORE: " + score, player.x, 75);
 
 }
 
@@ -291,5 +268,4 @@ if (key === ' '){
 function clearSprites(){
   clouds.removeAll();
   player.remove();
-  // text.remove();
 }
