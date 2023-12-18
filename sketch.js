@@ -10,6 +10,10 @@ let cloud;
 function preload(){
   img1 = loadImage('images/bee.png')
   img2 = loadImage('images/cloud.png')
+  startImg = loadImage('images/startScreen.jpg')
+  loseImg = loadImage('images/loseScreen.jpg')
+  winImg = loadImage ('images/winScreen.jpg')
+  nextImg = loadImage('images/nextLevel.jpg')
 }
 
 
@@ -45,24 +49,10 @@ function setup() {
 
 
 
-  // dots = new Group();
-  //   dots.color = 'yellow';
-  //   dots.y = 200;
-  //   dots.collider = 'kinematic'
-
-  //   while (dots.length < 24) {
-  //     let dot = new dots.Sprite();
-  //     dot.x = dots.length * 100 + 300;
-  //     dot.diameter = 10
-  //   }
-  // player.collides(dots, collect)
 
 }
 
-// function collect(){
-//   dot.remove();
-//   coins++
-// }
+
 
 function start(){
   button.hide()
@@ -79,6 +69,12 @@ function setGradient(g1, g2) {
   }
 } // gradient for level 2 (taken from midterm)
 
+
+function startScreen(){
+  new Canvas (1000,600);
+  clearSprites();
+  background(startImg);
+}
 
 function level1(){
   clouds.remove();
@@ -112,7 +108,7 @@ function draw() {
   //level2();
   if (level === 0){
     if (!bool){
-      background (255);
+      startScreen();
       bool = true
       // clearSprites();
     }
