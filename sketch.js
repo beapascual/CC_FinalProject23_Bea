@@ -8,7 +8,8 @@ let bool;
 let cloud;
 let startBool;
 let loseBool;
-let nextBool
+let nextBool;
+let hitBool;
 
 function preload(){
   img1 = loadImage('images/bee.png')
@@ -32,6 +33,7 @@ function setup() {
   startBool = false
   loseBool = false
   nextBool = false
+  hitBool = false
 
 
 	player = new Sprite();
@@ -187,7 +189,7 @@ function draw() {
   if (level === 2){
     if (!bool2){
       setup()
-  
+      bool2 = true
     }
     level2();
     if (lives > 0){
@@ -220,18 +222,25 @@ function draw() {
 
 
   if (player.collides(clouds)){
-    player.x = 50
+    if(!hitBool){
+      setup()
+      hitBool = true
+    }
     lives --
   }
 
   if (player.y > height){
-  player.x = 50
-  player.y = 200
+    if(!hitBool){
+      setup()
+      hitBool = true
+    }
   lives --
   }
   if (player.y < 0){
-    player.x = 50
-    player.y = 200
+    if(!hitBool){
+      setup()
+      hitBool = true
+    }
     lives --
   }
 
