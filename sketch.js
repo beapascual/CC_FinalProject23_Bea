@@ -7,6 +7,7 @@ let bool1, bool2, bool3, bool4;
 let bool;
 let cloud;
 let startBool;
+let loseBool;
 
 function preload(){
   img1 = loadImage('images/bee.png')
@@ -28,6 +29,8 @@ function setup() {
   bool4 = false
   bool = false// world basics
   startBool = false
+  loseBool = false
+
 
 	player = new Sprite();
 	player.x = 50
@@ -50,9 +53,10 @@ function setup() {
   startButton.style('font-size','70px')
   startButton.style('background-color','255')
   startButton.mousePressed(start)
+  startButton.hide()
 
   restartButton = createButton ("restart");
-  restartButton.position (700,350);
+  restartButton.position (650,350);
   restartButton.style('font-size','70px')
   restartButton.style('background-color','255')
   restartButton.mousePressed(restart)
@@ -71,7 +75,8 @@ function start(){
 
 function restart(){
   restartButton.hide()
-  startScreen();
+  level = 0
+  lives = 3
 }
 
 function setGradient(g1, g2) {
@@ -92,6 +97,7 @@ function startScreen(){
     startBool = true
     }
   background(startImg);
+  startButton.show()
 }
 
 function level1(){
@@ -126,7 +132,12 @@ function level2(){
 }
 
 
-
+function loseScreen(){
+  new Canvas (1000,600);
+  clearSprites();
+  background(loseImg);
+  restartButton.show();
+}
 
 
 
@@ -134,10 +145,10 @@ function draw() {
 
   //level2();
   if (level === 0){
-    if (!bool){
+    // if (!bool){
       startScreen();
-      bool = true
-    }
+    //   bool = true
+    // }
   }
  
 
@@ -225,10 +236,9 @@ function draw() {
   // }
 
   if (lives === 0){
-    new Canvas (1000,600);
-    clearSprites();
-    background(loseImg);
-    restartButton.show();
+    
+    loseScreen();
+    
   }
 
 
