@@ -11,6 +11,7 @@ let loseBool;
 let nextBool;
 let hitBool;
 
+
 function preload(){
   img1 = loadImage('images/bee.png')
   img2 = loadImage('images/cloud.png')
@@ -127,9 +128,11 @@ function next(){
 function level1(){
   new Canvas (3000,600);
   background(115,239,245)
+  translate (-player.x + 50, 0)
   fill(255)
   stroke(0)
   strokeWeight(2)
+  player.overlaps(finishLine,nextLevel)
   text ("LIVES: " + lives, player.x, 50);
   text ("LEVEL" + level, player.x + 500, 50);
 
@@ -172,19 +175,18 @@ function draw() {
  
 
   if (level === 1){
-
-  
+    level1();
     if (!bool1){
       setup();
-      level1();
       bool1 = true
     }
-    if (lives > 0){
-	    translate (-player.x + 50, 0)
-	    clear();
-      player.overlaps(finishLine,nextLevel)
-    }
-  }
+  // if (lives > 0){
+  //   // translate (-player.x + 50, 0)
+  //   // clear();
+  //   player.overlaps(finishLine,nextLevel)
+  // }
+}
+  
 
   if (level === 2){
     if (!bool2){
