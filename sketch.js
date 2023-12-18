@@ -43,9 +43,11 @@ function setup() {
   g1 = color(232, 86, 94);
   g2 = color(232, 170, 69);// colors for gradient
 
-  button = createButton ("start");
-  button.position (200,200);
-  button.mousePressed(start)
+  startButton = createButton ("start");
+  startButton.position (750,400);
+  startButton.style('font-size','70px')
+  startButton.style('background-color','255')
+  startButton.mousePressed(start)
 
 
 
