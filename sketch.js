@@ -6,6 +6,7 @@ let img1, img2;
 let bool1, bool2, bool3, bool4;
 let bool;
 let cloud;
+let startBool;
 
 function preload(){
   img1 = loadImage('images/bee.png')
@@ -26,6 +27,7 @@ function setup() {
   bool3 = false
   bool4 = false
   bool = false// world basics
+  startBool = false
 
 	player = new Sprite();
 	player.x = 50
@@ -49,6 +51,12 @@ function setup() {
   startButton.style('background-color','255')
   startButton.mousePressed(start)
 
+  restartButton = createButton ("restart");
+  restartButton.position (700,350);
+  restartButton.style('font-size','70px')
+  restartButton.style('background-color','255')
+  restartButton.mousePressed(restart)
+  restartButton.hide()
 
 
 
@@ -57,8 +65,13 @@ function setup() {
 
 
 function start(){
-  button.hide()
+  startButton.hide()
   level = 1
+}
+
+function restart(){
+  restartButton.hide()
+  startScreen();
 }
 
 function setGradient(g1, g2) {
@@ -74,12 +87,24 @@ function setGradient(g1, g2) {
 
 function startScreen(){
   new Canvas (1000,600);
-  clearSprites();
+  if (!startBool){
+    // clearSprites();
+    startBool = true
+    }
   background(startImg);
 }
 
 function level1(){
-  clouds.remove();
+  new Canvas (3000,600);
+  background(115,239,245)
+  fill(255)
+  stroke(0)
+  strokeWeight(2)
+  text ("LIVES: " + lives, player.x, 50);
+  text ("LEVEL" + level, player.x + 500, 50);
+
+
+  clouds.removeAll();
   while (clouds.length < 5) {
     cloud = new clouds.Sprite();
     cloud.x = clouds.length * 400 + 500;
@@ -90,7 +115,7 @@ function level1(){
 }//cloud pattern for level1
 
 function level2(){
-  clouds.remove();
+  clouds.removeAll();
   while (clouds.length < 5) {
     cloud = new clouds.Sprite();
     cloud.x = clouds.length * 800 + 500;
@@ -112,19 +137,16 @@ function draw() {
     if (!bool){
       startScreen();
       bool = true
-      // clearSprites();
     }
   }
  
 
   if (level === 1){
+    level1();
     if (!bool1){
-      text ("LIVES: " + lives, player.x, 50);
-  text ("LEVEL" + level, player.x + 500, 50);
       player.x = 50
       bool1 = true
     }
-    level1();
     if (lives > 0){
 	    translate (-player.x + 50, 0)
 	    clear();
@@ -203,15 +225,18 @@ function draw() {
   // }
 
   if (lives === 0){
+    new Canvas (1000,600);
     clearSprites();
+    background(loseImg);
+    restartButton.show();
   }
 
 
-  fill(255)
-  stroke(0)
-  strokeWeight(2)
-  text ("LIVES: " + lives, player.x, 50);
-  text ("LEVEL" + level, player.x + 500, 50);
+  // fill(255)
+  // stroke(0)
+  // strokeWeight(2)
+  // text ("LIVES: " + lives, player.x, 50);
+  // text ("LEVEL" + level, player.x + 500, 50);
 // text ("COINS: " + coins, player.x, 75);
 
 }
@@ -230,7 +255,7 @@ if (key === ' '){
 
 
 function clearSprites(){
-  clouds.remove();
+  clouds.removeAll();
   player.remove();
   // text.remove();
 }
