@@ -99,7 +99,9 @@ function restart(){
   restartButton.hide()
   level = 0
   lives = 3
-  setup();
+  bool1 = false
+  bool2 = false
+  bool3 = false
 }
 
 function next(){
