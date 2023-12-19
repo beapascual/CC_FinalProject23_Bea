@@ -229,6 +229,7 @@ function draw() {
     level1();
     }
     if (!bool1){
+      clearSprites()
       setup();
       bool1 = true
     }
@@ -240,6 +241,7 @@ function draw() {
       level2();
       }
       if (!bool2){
+        clearSprites()
         setup();
         bool2 = true
       }
@@ -251,6 +253,7 @@ function draw() {
       level3();
       }
       if (!bool3){
+        clearSprites()
         setup();
         bool3 = true
       }
@@ -297,7 +300,6 @@ function clearSprites(){
 
 function respawn(){
   lives --
-  player.x = 50
-  player.y = 200
-  player.collider = 'kinematic'
+  clearSprites()
+  setup()
 }
