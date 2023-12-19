@@ -10,7 +10,7 @@ let startBool;
 let loseBool;
 let nextBool;
 let hitBool;
-let lvl1, lvl2;
+let lvl1, lvl, lvl3;
 
 
 function preload(){
@@ -38,6 +38,7 @@ function setup() {
   hitBool = false
   lvl1 = false
   lvl2 = false
+  lvl3 = false
 
 
 	player = new Sprite();
@@ -177,11 +178,42 @@ function level2(){
 }
 }
 
+function level3(){
+  new Canvas (3000,600);
+  background(0,0,100)
+  translate (-player.x + 50, 0)
+  fill(255)
+  stroke(0)
+  strokeWeight(3)
+  player.overlaps(finishLine,winScreen);
+  textSize(30)
+  text ("LIVES: " + lives, player.x, 50);
+  text("LEVEL" + level, player.x + 425, 50);
+
+
+  clouds.removeAll();
+  while (clouds.length < 5) {
+    cloud = new clouds.Sprite();
+    cloud.x = clouds.length * 400 + 500;
+    cloud.y = 300
+    cloud.w = 125;
+    cloud.h = 50
+  }
+}
+
 
 function loseScreen(){
   new Canvas (1000,600);
   clearSprites();
   background(loseImg);
+  restartButton.show();
+}
+
+function winScreen(){
+  lvl3 = true
+  new Canvas (1000,600);
+  clearSprites();
+  background(winImg);
   restartButton.show();
 }
 
@@ -216,21 +248,14 @@ function draw() {
   
 
   if (level === 3){
-    if (!bool3){
-      level2();
-      player.x = 50
-      bool3 = true
-      
-    }
-    if (lives > 0){
-    translate (-player.x + 50, 0)
-    clear();
-    background(0,0,100)
-    if (player.x > 2800) {
-    level = 4
+    if (!lvl3){
+      level3();
+      }
+      if (!bool3){
+        setup();
+        bool3 = true
       }
     }
-  }
 
 
 
