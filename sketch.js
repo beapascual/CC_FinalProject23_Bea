@@ -1,15 +1,10 @@
-let player, floor;
+let player;
 let lives = 3;
 let coins = 0;
 let level = 0
 let img1, img2;
 let bool1, bool2, bool3, bool4;
-let bool;
 let cloud;
-let startBool;
-let loseBool;
-let nextBool;
-let hitBool;
 let lvl1, lvl, lvl3;
 
 
@@ -20,22 +15,17 @@ function preload(){
   loseImg = loadImage('images/loseScreen.jpg')
   winImg = loadImage ('images/winScreen.jpg')
   nextImg = loadImage('images/nextLevel.jpg')
+  img3 = loadImage('images/finishLine.png')
 }
 
 
 function setup() {
 	new Canvas(3000, 400);
-	world.gravity.y = 10;
-  textSize(20); 
+	world.gravity.y = 10; 
   bool1 = false
   bool2 = false
   bool3 = false
   bool4 = false
-  bool = false// world basics
-  startBool = false
-  loseBool = false
-  nextBool = false
-  hitBool = false
   lvl1 = false
   lvl2 = false
   lvl3 = false
@@ -48,7 +38,9 @@ function setup() {
   player.scale = 0.05 //player settings
   player.collider = 'kinematic'
 
-  finishLine = new Sprite(2800,300,50,600)
+  finishLine = new Sprite(2800,300,100,600)
+  // finishLine.img = img3
+  finishLine.scale = 0.4
   finishLine.collider = 'kinematic'
   
   
