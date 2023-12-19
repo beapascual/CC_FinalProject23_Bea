@@ -32,14 +32,15 @@ function setup() {
 
 
 	player = new Sprite();
-	player.x = 50
-	player.y = 200;
+	player.x = 200
+	player.y = 300;
+  player.diameter = 30
   player.img = img1
-  player.scale = 0.05 //player settings
+  player.scale = 0.08 //player settings
   player.collider = 'kinematic'
 
-  finishLine = new Sprite(2800,300,100,600)
-  // finishLine.img = img3
+  finishLine = new Sprite(2800,300,300,2000)
+  finishLine.img = img3
   finishLine.scale = 0.4
   finishLine.collider = 'kinematic'
   
@@ -52,6 +53,8 @@ function setup() {
 
   g1 = color(232, 86, 94);
   g2 = color(232, 170, 69);// colors for gradient
+
+
 
   startButton = createButton ("start");
   startButton.position (750,400);
@@ -126,7 +129,7 @@ function next(){
 function level1(){
   new Canvas (3000,600);
   background(115,239,245)
-  translate (-player.x + 50, 0)
+  translate (-player.x + 100, 0)
   fill(255)
   stroke(0)
   strokeWeight(3)
@@ -141,7 +144,7 @@ function level1(){
     cloud = new clouds.Sprite();
     cloud.x = clouds.length * 400 + 500;
     cloud.y = 200
-    cloud.w = 125;
+    cloud.w = 100
     cloud.h = 50
   }
 }//cloud pattern for level1
@@ -212,6 +215,11 @@ function winScreen(){
 
 
 function draw() {
+
+  player.debug = true
+  clouds.debug = true
+  finishLine.debug = true
+
   if (level === 0){
       startScreen();
   }
@@ -252,27 +260,19 @@ function draw() {
 
 
   if (player.collides(clouds)){
-    if(!hitBool){
       setup()
-      hitBool = true
-    }
     lives --
   }
 
   if (player.y > height){
-    if(!hitBool){
       setup()
-      hitBool = true
-    }
   lives --
   }
   if (player.y < 0){
-    if(!hitBool){
       setup()
-      hitBool = true
+      lives --
     }
-    lives --
-  }
+  
 
  
 
@@ -280,16 +280,9 @@ function draw() {
     loseScreen();
     }
   
+  }
 
-
-  fill(255)
-  stroke(0)
-  strokeWeight(2)
-  // text ("LIVES: " + lives, player.x, 50);
-  // text ("LEVEL" + level, player.x + 500, 50);
-// text ("SCORE: " + score, player.x, 75);
-
-}
+ 
 
 
 
@@ -305,6 +298,6 @@ if (key === ' '){
 
 
 function clearSprites(){
-  clouds.remove();
+  clouds.removeAll();
   player.remove();
 }
