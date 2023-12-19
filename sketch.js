@@ -3,7 +3,7 @@ let lives = 3;
 let level = 0;
 let img1, img2;
 let bool1, bool2, bool3;
-let cloud1, cloud2, cloud3;
+let cloud, cloud1, cloud2;
 let lvl1, lvl, lvl3;
 
 
@@ -21,6 +21,7 @@ function preload(){
 function setup() {
 	new Canvas(3000, 400);
 	world.gravity.y = 10; 
+  textFont('Comic Sans MS');
   bool1 = false
   bool2 = false
   bool3 = false
@@ -67,6 +68,7 @@ function setup() {
 
   startButton = createButton ("start");
   startButton.position (750,400);
+  startButton.style('font-family', "Comic Sans MS")
   startButton.style('font-size','70px')
   startButton.style('background-color','255')
   startButton.mousePressed(start)
@@ -74,13 +76,15 @@ function setup() {
 
   restartButton = createButton ("restart");
   restartButton.position (650,350);
+  restartButton.style('font-family', "Comic Sans MS")
   restartButton.style('font-size','70px')
   restartButton.style('background-color','255')
   restartButton.mousePressed(restart)
   restartButton.hide()
 
   nextButton = createButton ("continue");
-  nextButton.position (650,350);
+  nextButton.position (365,350);
+  nextButton.style('font-family', "Comic Sans MS")
   nextButton.style('font-size','70px')
   nextButton.style('background-color','255')
   nextButton.mousePressed(next)
@@ -160,24 +164,24 @@ function level1(){
   strokeWeight(3)
   player.overlaps(finishLine,nextLevel)
   textSize(30)
-  text ("LIVES: " + lives, player.x, 50);
-  text("LEVEL" + level, player.x + 425, 50);
+  text ("LIVES: " + lives, player.x-50, 50);
+  text("LEVEL " + level, player.x + 375, 50);
 
 
   clouds.removeAll();
   while (clouds.length < 4) {
-    cloud1 = new clouds.Sprite();
-    cloud1.x = clouds.length * 500 + 500;
-    cloud1.y = 175
-    cloud1.w = 100
-    cloud1.h = 50
+    cloud = new clouds.Sprite();
+    cloud.x = clouds.length * 500 + 500;
+    cloud.y = 175
+    cloud.w = 100
+    cloud.h = 50
 
   while(clouds1.length < 3) {
-    cloud2 = new clouds1.Sprite();
-    cloud2.x = clouds1.length * 500 + 750;
-    cloud2.y = 425
-    cloud2.w = 100
-    cloud2.h = 50
+    cloud1 = new clouds1.Sprite();
+    cloud1.x = clouds1.length * 500 + 750;
+    cloud1.y = 425
+    cloud1.w = 100
+    cloud1.h = 50
   }
 }
 }
@@ -195,32 +199,32 @@ function level2(){
   strokeWeight(3)
   player.overlaps(finishLine,nextLevel)
   textSize(30)
-  text ("LIVES: " + lives, player.x, 50);
-  text("LEVEL" + level, player.x + 425, 50);
+  text ("LIVES: " + lives, player.x-50, 50);
+  text("LEVEL " + level, player.x + 375, 50);
 
 
   clouds.removeAll();
   while (clouds.length < 2) {
-    cloud1 = new clouds.Sprite();
-    cloud1.x = clouds.length * 700 + 700;
-    cloud1.y = 100
-    cloud1.w = 100
-    cloud1.h = 50
+    cloud = new clouds.Sprite();
+    cloud.x = clouds.length * 700 + 700;
+    cloud.y = 100
+    cloud.w = 100
+    cloud.h = 50
 
   while(clouds1.length < 2) {
-    cloud2 = new clouds1.Sprite();
-    cloud2.x = clouds1.length * 700 + 700;
-    cloud2.y = 500
-    cloud2.w = 100
-    cloud2.h = 50
+    cloud1 = new clouds1.Sprite();
+    cloud1.x = clouds1.length * 700 + 700;
+    cloud1.y = 500
+    cloud1.w = 100
+    cloud1.h = 50
   }
 
   while(clouds2.length < 3) {
-    cloud3 = new clouds2.Sprite();
-    cloud3.x = clouds2.length * 700 + 350;
-    cloud3.y = 300
-    cloud3.w = 100
-    cloud3.h = 50
+    cloud2 = new clouds2.Sprite();
+    cloud2.x = clouds2.length * 700 + 350;
+    cloud2.y = 300
+    cloud2.w = 100
+    cloud2.h = 50
   }
 }
 }
@@ -235,30 +239,12 @@ function level3(){
   strokeWeight(3)
   player.overlaps(finishLine,winScreen);
   textSize(30)
-  text ("LIVES: " + lives, player.x, 50);
-  text("LEVEL" + level, player.x + 425, 50);
+  text ("LIVES: " + lives, player.x-50, 50);
+  text("LEVEL " + level, player.x + 375, 50);
 
 
   clouds.removeAll();
-  while (clouds.length < 6) {
-    cloud1 = new clouds.Sprite();
-    cloud1.x = clouds.length * 400 + 200;
-    cloud1.y = 150
-    cloud1.w = 100
-    cloud1.h = 50
-
-    cloud1 = new clouds.Sprite();
-    cloud1.x = clouds.length * 400 + 100;
-    cloud1.y = 450
-    cloud1.w = 100
-    cloud1.h = 50
-
-    cloud1 = new clouds.Sprite();
-    cloud1.x = clouds.length * 400 + 75;
-    cloud1.y = 300
-    cloud1.w = 100
-    cloud1.h = 50
-  }
+ 
 }
 
 
@@ -267,11 +253,7 @@ function level3(){
 
 function draw() {
 
-  player.debug = true
-  clouds.debug = true
-  clouds1.debug = true
-  clouds2.debug = true
-  finishLine.debug = true
+
 
   if (level === 0){
       startScreen();
@@ -334,7 +316,21 @@ function draw() {
  
 
 
+function hitboxes(){
+  player.debug = true
+  clouds.debug = true
+  clouds1.debug = true
+  clouds2.debug = true
+  finishLine.debug = true
+}
 
+function hitboxesOff(){
+  player.debug = false
+  clouds.debug = false
+  clouds1.debug = false
+  clouds2.debug = false
+  finishLine.debug = false
+}
 
 function keyPressed(){
 if (key === ' '){
@@ -342,6 +338,12 @@ if (key === ' '){
     player.vel.y = -5
     player.collider = 'dynamic'
   }
+if(key === 'h'){
+  hitboxes()
+}
+if(key === 'n'){
+  hitboxesOff();
+}
 }
 
 function clearSprites(){
