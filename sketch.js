@@ -1,10 +1,23 @@
+//Bea Pascual - Creative Coding Final Project
+
+/*References
+images for sprites taken from google
+images for screen made with google slides
+
+https://www.youtube.com/watch?v=Ouza_4SsbLc - video only used for sidescrolling effect (does not teach p5js :( )
+https://p5play.org/learn/group.html - used specifically to learn how to make groups for my clouds
+https://p5play.org/ - used in general to learn pretty much everything for this project
+https://p5js.org/reference/ - used in case I forgot any previous concepts
+*/
+
+
+
 let player;
 let lives = 3;
 let level = 0;
 let lvl1, lvl, lvl3; // used to run level functions once
 let bool1, bool2, bool3; // used to rerun setup once before every level
 let cloud, cloud1, cloud2, cloud3; // sprites in the cloud groups
-
 
 
 function preload(){
@@ -135,7 +148,7 @@ function startScreen(){
 } //start screen
 
 function nextLevel(){
-  // lvl1 = true
+  lvl1 = true
   lvl2 = true //levels 1 and 2 are called to be true so that their functions only run once within the draw loop in order to not interfere with future levels
   clearSprites();
   new Canvas (1000,600);
@@ -275,58 +288,59 @@ function draw() {
   if (level === 1){ //level 1, easy difficulty, daytime
     if (!lvl1){
     level1();
-    lvl1 = true
-    }// so that level 1 function will only run once
+    }// so that level 1 function will only run once,, lvl1 isn't called to be true yet so that the level 1 function can still loop for the translate and background functions when the bee moves
     if (!bool1){
-      clearSprites()
-      setup();
-      bool1 = true
+      clearSprites() //clears the bee and obstacles from previous levels and setup functions, clears sprites before calling setup to prevent duplicates
+      setup(); //starts bee in original position from setup, allows bee to stay still until user presses the space bar
+      bool1 = true // makes sure setup function only runs once
     }
   }
   
-  if (level === 2){
+  if (level === 2){ // level 2, medium difficulty, sunset
     if (!lvl2){
       level2();
-      }
+      }// so that level 2 function will only run once,, lvl2 isn't called to be true yet so that the level 2 function can still loop for the translate and background functions when the bee moves
       if (!bool2){
-        clearSprites()
-        setup();
-        bool2 = true
+        clearSprites()//clears the bee and obstacles from previous levels and setup functions, clears sprites before calling setup to prevent duplicates
+        setup(); //starts bee in original position from setup, allows bee to stay still until user presses the space bar
+        bool2 = true // makes sure setup function only runs once
       }
     }
   
-  if (level === 3){
+  if (level === 3){ // level 3, hard(ish) difficulty, night time
     if (!lvl3){
       level3();
-      }
+      }// so that level 3 function will only run once,, lvl3 isn't called to be true yet so that the level 3 function can still loop for the translate and background functions when the bee moves
       if (!bool3){
-        clearSprites()
-        setup();
-        bool3 = true
+        clearSprites()//clears the bee and obstacles from previous levels and setup functions, clears sprites before calling setup to prevent duplicates
+        setup(); //starts bee in original position from setup, allows bee to stay still until user presses the space bar
+        bool3 = true // makes sure setup function only runs once
       }
     }
 
 
     if (lives === 0){
       loseScreen();
-    }
+    } // lose screen appears if player loses all 3 lives
 
+  // resets player back to starting position if they collide with any clouds
     player.collides(clouds,respawn)
     player.collides(clouds1,respawn)
     player.collides(clouds2,respawn)
-    player.collides(clouds3,respawn)
-
+    player.collides(clouds3,respawn) 
+  
+  // resets player back to starting position if they go off the screen
     if (player.y > height){
       respawn()
     }
     if (player.y < 0){
       respawn()
-    }
+    } 
 }
 
 
-function clearSprites(){
-  clouds.removeAll();
+function clearSprites(){ //clears all sprites
+  clouds.removeAll(); //removeAll removes all the sprites within the group without removing the group itself (learned from the eroor console)
   clouds1.removeAll();
   clouds2.removeAll();
   clouds3.removeAll();
@@ -334,14 +348,14 @@ function clearSprites(){
 }
 
 
-function respawn(){
-  lives --
-  clearSprites()
-  setup()
+function respawn(){ 
+  lives -- //happens when a player loses a life
+  clearSprites() //clears sprites before calling setup to make sure there aren't duplicates
+  setup() //resets player back to original position so that bee isn't moving until player presses the space bar
 }
 
 
-function hitboxes(){
+function hitboxes(){ //shows hitboxes of all sprites, useful because the hitboxes don't exactly match up with the image due to weird shapes
   player.debug = true
   clouds.debug = true
   clouds1.debug = true
@@ -350,7 +364,7 @@ function hitboxes(){
   finishLine.debug = true
 }
 
-function hitboxesOff(){
+function hitboxesOff(){ //turns the hitboxes of all sprites off, just as an option
   player.debug = false
   clouds.debug = false
   clouds1.debug = false
@@ -361,16 +375,18 @@ function hitboxesOff(){
 
 
 function keyPressed(){
-if (key === ' '){
-    player.vel.x = 4
-    player.vel.y = -5
-    player.collider = 'dynamic'
+if (key === ' '){ // space bar to get the bee to move
+    player.vel.x = 4 // moves the bee forward, causes the screen to start scrolling
+    player.vel.y = -5 // gives the bee a "jump"
+    player.collider = 'dynamic' //allows bee to move and be affected by gravity and collisions with the clouds
   }
-if(key === 'h'){
+
+//keys to be pressed for hitboxes
+  if(key === 'h'){//h for hitboxes
   hitboxes()
-}
-if(key === 'n'){
+  }
+  if(key === 'n'){//n for no hitboxes
   hitboxesOff();
-}
+  }
 }
 
