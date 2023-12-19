@@ -268,8 +268,8 @@ function level3(){
     cloud3 = new clouds3.Sprite();
     cloud3.x = clouds3.length * 800 + 800;
     cloud3.y = 300
-    cloud3.w = 300
-    cloud3.h = 140
+    cloud3.w = 430
+    cloud3.h = 145
   }
  
 }
@@ -346,6 +346,7 @@ function hitboxes(){
   clouds.debug = true
   clouds1.debug = true
   clouds2.debug = true
+  clouds3.debug = true
   finishLine.debug = true
 }
 
@@ -354,6 +355,7 @@ function hitboxesOff(){
   clouds.debug = false
   clouds1.debug = false
   clouds2.debug = false
+  clouds3.debug = false
   finishLine.debug = false
 }
 
