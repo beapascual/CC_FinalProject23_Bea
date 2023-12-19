@@ -20,8 +20,10 @@ function preload(){
 
 function setup() {
 	new Canvas(3000, 400);
-	world.gravity.y = 10; 
   textFont('Comic Sans MS');
+	world.gravity.y = 10; 
+  g1 = color(232, 86, 94);
+  g2 = color(232, 170, 69);// colors for gradient
   bool1 = false
   bool2 = false
   bool3 = false
@@ -29,7 +31,6 @@ function setup() {
   lvl1 = false
   lvl2 = false
   lvl3 = false
-
 
 	player = new Sprite();
 	player.x = 200
@@ -44,12 +45,10 @@ function setup() {
   finishLine.scale = 0.4
   finishLine.collider = 'kinematic'
   
-
   clouds = new Group();
   clouds.img = img2;
   clouds.scale = 0.2
   clouds.collider = 'kinematic' //clouds settings
-
 
   clouds1 = new Group();
   clouds1.img = img2;
@@ -65,11 +64,6 @@ function setup() {
   clouds3.img = img2;
   clouds3.scale = 0.5
   clouds3.collider = 'kinematic'
-
-  g1 = color(232, 86, 94);
-  g2 = color(232, 170, 69);// colors for gradient
-
-
 
   startButton = createButton ("start");
   startButton.position (750,400);
@@ -94,7 +88,6 @@ function setup() {
   nextButton.style('background-color','255')
   nextButton.mousePressed(next)
   nextButton.hide()
-
 }
 
 
@@ -107,6 +100,7 @@ function setGradient(g1, g2) {
     line(0, y, 5000, y); // makes the color appear
   }
 } // gradient for level 2 (taken from midterm)
+
 
 function start(){
   startButton.hide()
@@ -127,6 +121,7 @@ function next(){
   level++
   nextBool = false
 }
+
 
 function startScreen(){
   new Canvas (1000,600);
@@ -191,9 +186,6 @@ function level1(){
 }
 }
 
-//cloud pattern for level1
-
-
 function level2(){
   new Canvas (3000,600);
   background(0);
@@ -234,7 +226,6 @@ function level2(){
 }
 }
 
-
 function level3(){
   new Canvas (3000,600);
   background(0,0,100)
@@ -271,17 +262,10 @@ function level3(){
     cloud3.w = 430
     cloud3.h = 145
   }
- 
 }
 
 
-
-
-
 function draw() {
-
-
-
   if (level === 0){
       startScreen();
   }
@@ -295,9 +279,8 @@ function draw() {
       setup();
       bool1 = true
     }
-}
+  }
   
-
   if (level === 2){
     if (!lvl2){
       level2();
@@ -309,7 +292,6 @@ function draw() {
       }
     }
   
-
   if (level === 3){
     if (!lvl3){
       level3();
@@ -321,24 +303,39 @@ function draw() {
       }
     }
 
+
     if (lives === 0){
       loseScreen();
     }
 
-  player.collides(clouds,respawn)
-  player.collides(clouds1,respawn)
-  player.collides(clouds2,respawn)
-  player.collides(clouds3,respawn)
+    player.collides(clouds,respawn)
+    player.collides(clouds1,respawn)
+    player.collides(clouds2,respawn)
+    player.collides(clouds3,respawn)
 
-  if (player.y > height){
-      respawn()
-  }
-  if (player.y < 0){
+    if (player.y > height){
       respawn()
     }
-  }
+    if (player.y < 0){
+      respawn()
+    }
+}
 
- 
+
+function clearSprites(){
+  clouds.removeAll();
+  clouds1.removeAll();
+  clouds2.removeAll();
+  clouds3.removeAll();
+  player.remove();
+}
+
+
+function respawn(){
+  lives --
+  clearSprites()
+  setup()
+}
 
 
 function hitboxes(){
@@ -359,6 +356,7 @@ function hitboxesOff(){
   finishLine.debug = false
 }
 
+
 function keyPressed(){
 if (key === ' '){
     player.vel.x = 4
@@ -373,16 +371,3 @@ if(key === 'n'){
 }
 }
 
-function clearSprites(){
-  clouds.removeAll();
-  clouds1.removeAll();
-  clouds2.removeAll();
-  clouds3.removeAll();
-  player.remove();
-}
-
-function respawn(){
-  lives --
-  clearSprites()
-  setup()
-}
