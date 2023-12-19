@@ -313,6 +313,6 @@ if (key === ' '){
 
 
 function clearSprites(){
-  clouds.removeAll();
+  clouds.remove();
   player.remove();
 }
