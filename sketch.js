@@ -2,10 +2,9 @@ let player;
 let lives = 3;
 let level = 0;
 let img1, img2;
-let bool1, bool2, bool3, bool4;
-let cloud;
+let bool1, bool2, bool3;
+let cloud1, cloud2, cloud3;
 let lvl1, lvl, lvl3;
-let lose;
 
 
 function preload(){
@@ -29,7 +28,6 @@ function setup() {
   lvl1 = false
   lvl2 = false
   lvl3 = false
-  lose = false
 
 
 	player = new Sprite();
@@ -48,8 +46,19 @@ function setup() {
 
   clouds = new Group();
   clouds.img = img2;
-  clouds.scale = 0.1
+  clouds.scale = 0.2
   clouds.collider = 'kinematic' //clouds settings
+
+
+  clouds1 = new Group();
+  clouds1.img = img2;
+  clouds1.scale = 0.2
+  clouds1.collider = 'kinematic'
+
+  clouds2 = new Group();
+  clouds2.img = img2;
+  clouds2.scale = 0.2
+  clouds2.collider = 'kinematic'
 
   g1 = color(232, 86, 94);
   g2 = color(232, 170, 69);// colors for gradient
@@ -156,20 +165,40 @@ function level1(){
 
 
   clouds.removeAll();
-  while (clouds.length < 5) {
-    cloud = new clouds.Sprite();
-    cloud.x = clouds.length * 400 + 500;
-    cloud.y = 200
-    cloud.w = 100
-    cloud.h = 50
+  while (clouds.length < 3) {
+    cloud1 = new clouds.Sprite();
+    cloud1.x = clouds.length * 500 + 500;
+    cloud1.y = 175
+    cloud1.w = 100
+    cloud1.h = 50
+
+  while(clouds1.length < 3) {
+    cloud2 = new clouds1.Sprite();
+    cloud2.x = clouds1.length * 500 + 750;
+    cloud2.y = 425
+    cloud2.w = 100
+    cloud2.h = 50
   }
-}//cloud pattern for level1
+
+//   while(clouds2.length < 3) {
+//     cloud3 = new clouds2.Sprite();
+//     cloud3.x = clouds2.length * 500 + 1000;
+//     cloud3.y = 300
+//     cloud3.w = 100
+//     cloud3.h = 50
+//   }
+// }
+  }
+}
+
+//cloud pattern for level1
+
 
 function level2(){
   new Canvas (3000,600);
   background(0);
   setGradient(g1,g2);
-  translate (-player.x + 50, 0)
+  translate (-player.x + 100, 0)
   fill(255)
   stroke(0)
   strokeWeight(3)
@@ -181,18 +210,35 @@ function level2(){
 
   clouds.removeAll();
   while (clouds.length < 5) {
-    cloud = new clouds.Sprite();
-    cloud.x = clouds.length * 400 + 500;
-    cloud.y = 400
-    cloud.w = 125;
-    cloud.h = 50
+    cloud1 = new clouds.Sprite();
+    cloud1.x = clouds.length * 500 + 400;
+    cloud1.y = 100
+    cloud1.w = 100
+    cloud1.h = 50
+
+  while(clouds1.length < 5) {
+    cloud2 = new clouds1.Sprite();
+    cloud2.x = clouds1.length * 500 + 400;
+    cloud2.y = 500
+    cloud2.w = 100
+    cloud2.h = 50
+  }
+
+  while(clouds2.length < 5) {
+    cloud3 = new clouds2.Sprite();
+    cloud3.x = clouds2.length * 500 + 250;
+    cloud3.y = 300
+    cloud3.w = 100
+    cloud3.h = 50
+  }
 }
 }
+
 
 function level3(){
   new Canvas (3000,600);
   background(0,0,100)
-  translate (-player.x + 50, 0)
+  translate (-player.x + 100, 0)
   fill(255)
   stroke(0)
   strokeWeight(3)
@@ -203,12 +249,24 @@ function level3(){
 
 
   clouds.removeAll();
-  while (clouds.length < 5) {
-    cloud = new clouds.Sprite();
-    cloud.x = clouds.length * 400 + 500;
-    cloud.y = 300
-    cloud.w = 125;
-    cloud.h = 50
+  while (clouds.length < 6) {
+    cloud1 = new clouds.Sprite();
+    cloud1.x = clouds.length * 400 + 200;
+    cloud1.y = 150
+    cloud1.w = 100
+    cloud1.h = 50
+
+    cloud1 = new clouds.Sprite();
+    cloud1.x = clouds.length * 400 + 100;
+    cloud1.y = 450
+    cloud1.w = 100
+    cloud1.h = 50
+
+    cloud1 = new clouds.Sprite();
+    cloud1.x = clouds.length * 400 + 75;
+    cloud1.y = 300
+    cloud1.w = 100
+    cloud1.h = 50
   }
 }
 
@@ -220,6 +278,8 @@ function draw() {
 
   player.debug = true
   clouds.debug = true
+  clouds1.debug = true
+  clouds2.debug = true
   finishLine.debug = true
 
   if (level === 0){
@@ -264,6 +324,8 @@ function draw() {
 
 
   player.collides(clouds,respawn)
+  player.collides(clouds1,respawn)
+  player.collides(clouds2,respawn)
 
   if (player.y > height){
       respawn()
@@ -271,9 +333,7 @@ function draw() {
   if (player.y < 0){
       respawn()
     }
-  
-
- 
+    
 
   if (lives === 0){
     loseScreen();
@@ -293,10 +353,10 @@ if (key === ' '){
   }
 }
 
-
-
 function clearSprites(){
   clouds.removeAll();
+  clouds1.removeAll();
+  clouds2.removeAll();
   player.remove();
 }
 
