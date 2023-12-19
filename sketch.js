@@ -1,11 +1,11 @@
 let player;
 let lives = 3;
-let coins = 0;
-let level = 0
+let level = 0;
 let img1, img2;
 let bool1, bool2, bool3, bool4;
 let cloud;
 let lvl1, lvl, lvl3;
+let lose;
 
 
 function preload(){
@@ -29,6 +29,7 @@ function setup() {
   lvl1 = false
   lvl2 = false
   lvl3 = false
+  lose = false
 
 
 	player = new Sprite();
@@ -43,7 +44,6 @@ function setup() {
   finishLine.img = img3
   finishLine.scale = 0.4
   finishLine.collider = 'kinematic'
-  
   
 
   clouds = new Group();
@@ -80,6 +80,15 @@ function setup() {
 }
 
 
+function setGradient(g1, g2) {
+  noFill();
+  for (var y = 0; y < height; y++) { // as y increases inter increases, creating a smooth gradient
+    var inter = map(y, 0, 300, 0, 1); // from y=0 to y=300, color will change completely from g1 to g2
+    var s1 = lerpColor(g1, g2, inter); // lerp color makes color change from 1 to 2, inter makes smooth gradient
+    stroke(s1); // each line is a different color to make gradient ^^
+    line(0, y, 5000, y); // makes the color appear
+  }
+} // gradient for level 2 (taken from midterm)
 
 function start(){
   startButton.hide()
@@ -93,16 +102,11 @@ function restart(){
   setup();
 }
 
-function setGradient(g1, g2) {
-  noFill();
-  for (var y = 0; y < height; y++) { // as y increases inter increases, creating a smooth gradient
-    var inter = map(y, 0, 300, 0, 1); // from y=0 to y=300, color will change completely from g1 to g2
-    var s1 = lerpColor(g1, g2, inter); // lerp color makes color change from 1 to 2, inter makes smooth gradient
-    stroke(s1); // each line is a different color to make gradient ^^
-    line(0, y, 5000, y); // makes the color appear
-  }
-} // gradient for level 2 (taken from midterm)
-
+function next(){
+  nextButton.hide();
+  level++
+  nextBool = false
+}
 
 function startScreen(){
   new Canvas (1000,600);
@@ -120,11 +124,21 @@ function nextLevel(){
   nextButton.show()
 }
 
-function next(){
-  nextButton.hide();
-  level++
-  nextBool = false
+function loseScreen(){
+  new Canvas (1000,600);
+  clearSprites();
+  background(loseImg);
+  restartButton.show();
 }
+
+function winScreen(){
+  lvl3 = true
+  new Canvas (1000,600);
+  clearSprites();
+  background(winImg);
+  restartButton.show();
+}
+
 
 function level1(){
   new Canvas (3000,600);
@@ -197,20 +211,6 @@ function level3(){
 }
 
 
-function loseScreen(){
-  new Canvas (1000,600);
-  clearSprites();
-  background(loseImg);
-  restartButton.show();
-}
-
-function winScreen(){
-  lvl3 = true
-  new Canvas (1000,600);
-  clearSprites();
-  background(winImg);
-  restartButton.show();
-}
 
 
 
@@ -224,7 +224,6 @@ function draw() {
       startScreen();
   }
  
-
   if (level === 1){
     if (!lvl1){
     level1();
@@ -259,18 +258,13 @@ function draw() {
 
 
 
-  if (player.collides(clouds)){
-      setup()
-    lives --
-  }
+  player.collides(clouds,respawn)
 
   if (player.y > height){
-      setup()
-  lives --
+      respawn()
   }
   if (player.y < 0){
-      setup()
-      lives --
+      respawn()
     }
   
 
@@ -278,9 +272,8 @@ function draw() {
 
   if (lives === 0){
     loseScreen();
-    }
-  
   }
+}
 
  
 
@@ -300,4 +293,11 @@ if (key === ' '){
 function clearSprites(){
   clouds.removeAll();
   player.remove();
+}
+
+function respawn(){
+  lives --
+  player.x = 50
+  player.y = 200
+  player.collider = 'kinematic'
 }
