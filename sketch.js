@@ -10,7 +10,7 @@ let startBool;
 let loseBool;
 let nextBool;
 let hitBool;
-let lvl1
+let lvl1, lvl2;
 
 
 function preload(){
@@ -37,6 +37,7 @@ function setup() {
   nextBool = false
   hitBool = false
   lvl1 = false
+  lvl2 = false
 
 
 	player = new Sprite();
@@ -102,7 +103,7 @@ function setGradient(g1, g2) {
     var inter = map(y, 0, 300, 0, 1); // from y=0 to y=300, color will change completely from g1 to g2
     var s1 = lerpColor(g1, g2, inter); // lerp color makes color change from 1 to 2, inter makes smooth gradient
     stroke(s1); // each line is a different color to make gradient ^^
-    line(0, y, width, y); // makes the color appear
+    line(0, y, 5000, y); // makes the color appear
   }
 } // gradient for level 2 (taken from midterm)
 
@@ -116,6 +117,7 @@ function startScreen(){
 
 function nextLevel(){
   lvl1 = true
+  lvl2 = true
   clearSprites();
   new Canvas (1000,600);
   background(nextImg);
@@ -134,10 +136,11 @@ function level1(){
   translate (-player.x + 50, 0)
   fill(255)
   stroke(0)
-  strokeWeight(2)
+  strokeWeight(3)
   player.overlaps(finishLine,nextLevel)
+  textSize(30)
   text ("LIVES: " + lives, player.x, 50);
-  text ("LEVEL" + level, player.x + 500, 50);
+  text("LEVEL" + level, player.x + 425, 50);
 
 
   clouds.removeAll();
@@ -151,14 +154,27 @@ function level1(){
 }//cloud pattern for level1
 
 function level2(){
+  new Canvas (3000,600);
+  background(0);
+  setGradient(g1,g2);
+  translate (-player.x + 50, 0)
+  fill(255)
+  stroke(0)
+  strokeWeight(3)
+  player.overlaps(finishLine,nextLevel)
+  textSize(30)
+  text ("LIVES: " + lives, player.x, 50);
+  text("LEVEL" + level, player.x + 425, 50);
+
+
   clouds.removeAll();
   while (clouds.length < 5) {
     cloud = new clouds.Sprite();
-    cloud.x = clouds.length * 800 + 500;
-    cloud.y = 100
+    cloud.x = clouds.length * 400 + 500;
+    cloud.y = 400
     cloud.w = 125;
     cloud.h = 50
-  }
+}
 }
 
 
@@ -180,35 +196,24 @@ function draw() {
   if (level === 1){
     if (!lvl1){
     level1();
-    // lvl1 = true
     }
     if (!bool1){
       setup();
       bool1 = true
     }
-  // if (lives > 0){
-  //   // translate (-player.x + 50, 0)
-  //   // clear();
-  //   player.overlaps(finishLine,nextLevel)
-  // }
 }
   
 
   if (level === 2){
-    if (!bool2){
-      setup()
-      bool2 = true
-    }
-    level2();
-    if (lives > 0){
-    translate (-player.x + 50, 0)
-    clear();
-    setGradient(g1,g2);
-    if (player.x > 2800) {
-      level = 3
+    if (!lvl2){
+      level2();
+      }
+      if (!bool2){
+        setup();
+        bool2 = true
       }
     }
-  }
+  
 
   if (level === 3){
     if (!bool3){
