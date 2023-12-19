@@ -10,6 +10,7 @@ let startBool;
 let loseBool;
 let nextBool;
 let hitBool;
+let lvl1
 
 
 function preload(){
@@ -35,6 +36,7 @@ function setup() {
   loseBool = false
   nextBool = false
   hitBool = false
+  lvl1 = false
 
 
 	player = new Sprite();
@@ -113,6 +115,7 @@ function startScreen(){
 }
 
 function nextLevel(){
+  lvl1 = true
   clearSprites();
   new Canvas (1000,600);
   background(nextImg);
@@ -175,7 +178,10 @@ function draw() {
  
 
   if (level === 1){
+    if (!lvl1){
     level1();
+    // lvl1 = true
+    }
     if (!bool1){
       setup();
       bool1 = true
