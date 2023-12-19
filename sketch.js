@@ -3,7 +3,7 @@ let lives = 3;
 let level = 0;
 let img1, img2;
 let bool1, bool2, bool3;
-let cloud, cloud1, cloud2;
+let cloud, cloud1, cloud2, cloud3;
 let lvl1, lvl, lvl3;
 
 
@@ -60,6 +60,11 @@ function setup() {
   clouds2.img = img2;
   clouds2.scale = 0.2
   clouds2.collider = 'kinematic'
+
+  clouds3 = new Group();
+  clouds3.img = img2;
+  clouds3.scale = 0.5
+  clouds3.collider = 'kinematic'
 
   g1 = color(232, 86, 94);
   g2 = color(232, 170, 69);// colors for gradient
@@ -173,15 +178,15 @@ function level1(){
     cloud = new clouds.Sprite();
     cloud.x = clouds.length * 500 + 500;
     cloud.y = 175
-    cloud.w = 100
-    cloud.h = 50
+    cloud.w = 145
+    cloud.h = 55
 
   while(clouds1.length < 3) {
     cloud1 = new clouds1.Sprite();
     cloud1.x = clouds1.length * 500 + 750;
     cloud1.y = 425
-    cloud1.w = 100
-    cloud1.h = 50
+    cloud1.w = 145
+    cloud1.h = 55
   }
 }
 }
@@ -208,23 +213,23 @@ function level2(){
     cloud = new clouds.Sprite();
     cloud.x = clouds.length * 700 + 700;
     cloud.y = 100
-    cloud.w = 100
-    cloud.h = 50
+    cloud.w = 145
+    cloud.h = 55
 
   while(clouds1.length < 2) {
     cloud1 = new clouds1.Sprite();
     cloud1.x = clouds1.length * 700 + 700;
     cloud1.y = 500
-    cloud1.w = 100
-    cloud1.h = 50
+    cloud1.w = 145
+    cloud1.h = 55
   }
 
   while(clouds2.length < 3) {
     cloud2 = new clouds2.Sprite();
     cloud2.x = clouds2.length * 700 + 350;
     cloud2.y = 300
-    cloud2.w = 100
-    cloud2.h = 50
+    cloud2.w = 145
+    cloud2.h = 55
   }
 }
 }
@@ -244,6 +249,28 @@ function level3(){
 
 
   clouds.removeAll();
+  while (clouds.length < 2) {
+    cloud = new clouds.Sprite();
+    cloud.x = clouds.length * 800 + 400;
+    cloud.y = 100
+    cloud.w = 145
+    cloud.h = 55
+  }
+  while(clouds1.length < 2) {
+    cloud1 = new clouds1.Sprite();
+    cloud1.x = clouds1.length * 800 + 400;
+    cloud1.y = 500
+    cloud1.w = 145
+    cloud1.h = 55
+  }
+
+  while(clouds3.length < 2) {
+    cloud3 = new clouds3.Sprite();
+    cloud3.x = clouds3.length * 800 + 800;
+    cloud3.y = 300
+    cloud3.w = 300
+    cloud3.h = 140
+  }
  
 }
 
@@ -294,11 +321,14 @@ function draw() {
       }
     }
 
-
+    if (lives === 0){
+      loseScreen();
+    }
 
   player.collides(clouds,respawn)
   player.collides(clouds1,respawn)
   player.collides(clouds2,respawn)
+  player.collides(clouds3,respawn)
 
   if (player.y > height){
       respawn()
@@ -306,12 +336,7 @@ function draw() {
   if (player.y < 0){
       respawn()
     }
-    
-
-  if (lives === 0){
-    loseScreen();
   }
-}
 
  
 
@@ -350,6 +375,7 @@ function clearSprites(){
   clouds.removeAll();
   clouds1.removeAll();
   clouds2.removeAll();
+  clouds3.removeAll();
   player.remove();
 }
 
