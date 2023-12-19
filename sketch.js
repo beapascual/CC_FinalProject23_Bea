@@ -165,7 +165,7 @@ function level1(){
 
 
   clouds.removeAll();
-  while (clouds.length < 3) {
+  while (clouds.length < 4) {
     cloud1 = new clouds.Sprite();
     cloud1.x = clouds.length * 500 + 500;
     cloud1.y = 175
@@ -179,16 +179,7 @@ function level1(){
     cloud2.w = 100
     cloud2.h = 50
   }
-
-//   while(clouds2.length < 3) {
-//     cloud3 = new clouds2.Sprite();
-//     cloud3.x = clouds2.length * 500 + 1000;
-//     cloud3.y = 300
-//     cloud3.w = 100
-//     cloud3.h = 50
-//   }
-// }
-  }
+}
 }
 
 //cloud pattern for level1
@@ -209,24 +200,24 @@ function level2(){
 
 
   clouds.removeAll();
-  while (clouds.length < 5) {
+  while (clouds.length < 2) {
     cloud1 = new clouds.Sprite();
-    cloud1.x = clouds.length * 500 + 400;
+    cloud1.x = clouds.length * 700 + 700;
     cloud1.y = 100
     cloud1.w = 100
     cloud1.h = 50
 
-  while(clouds1.length < 5) {
+  while(clouds1.length < 2) {
     cloud2 = new clouds1.Sprite();
-    cloud2.x = clouds1.length * 500 + 400;
+    cloud2.x = clouds1.length * 700 + 700;
     cloud2.y = 500
     cloud2.w = 100
     cloud2.h = 50
   }
 
-  while(clouds2.length < 5) {
+  while(clouds2.length < 3) {
     cloud3 = new clouds2.Sprite();
-    cloud3.x = clouds2.length * 500 + 250;
+    cloud3.x = clouds2.length * 700 + 350;
     cloud3.y = 300
     cloud3.w = 100
     cloud3.h = 50
